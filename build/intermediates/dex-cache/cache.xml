@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.0.0-RC1/84c524dcd1a3088edd5560a8ac176eae1317f770/annotations-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="84c524dcd1a3088edd5560a8ac176eae1317f770">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/annotations-4.0.0-RC1_36f194d521104e6a2209b1d0905db8d37aa79bb5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/9429c7a6fdaba59bd646575513de1d8d6c939940/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="97cd0ab3ffad045a162fc1a413fe6abc58e199c4">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_19c6674928f29719bfb148a53d24c6271d1bc6b3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/c25a7f6ac918d5c9687d3f9436068c19a8729e44/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="4e38f488b591fa8ef9dce3e21752c92bde5f6f7c">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ddd02ff90e7e4e5e4b962328eead9c3047d73c11/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/26.0.2/8b68a849722b44f584e2d68c451c5e3844c10380/support-annotations-26.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8b68a849722b44f584e2d68c451c5e3844c10380">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-26.0.2_8181d63f262bfb9ca955bd31b31fb0e093b8620a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/b64787ddaec3623c4171d0764aec34502c644ea0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="138b5e3a5341bb37117b13f327de68f81f9f0669">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e96493a364534db5746b493c8cc7e076fa5dd128/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.0.0-RC1/c425e31eda1069f978a0e823ad50e567ab422656/gifdecoder-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="c425e31eda1069f978a0e823ad50e567ab422656">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/gifdecoder-4.0.0-RC1_731bbeb06680453f9ab3fbf05de908e494cb1b09/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/b948ec304c466b95bdb79b3d58b0ee2d6fd28af2/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ab8a4903076897a8fe029433ba0c3c3f958712ce">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_99572f55eec3bbc763b1ea780c244daae7e557c9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/785aff2e67a9b8465930d37517cdd3fbf8a4a20f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="df0c541b5406292d1c3d74fc8ea119bde14e77b0">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c064081b812c180b5d7ae20583d2f53bf09fc3b3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/a5d13231c027416c61c5b98c4bb078212208a1b6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="48a969b476c5c4bd8cabfe295428ff222bc68b8e">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f2138fe34b16dcc87c7be89035cacb7f0cc31f4e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/50db9ed0068511581a4138ad3fd9aa94e2fb5e65/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b4a446c110c5a9f3a62907367d5eea4d4062c36a">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0c88e5b103dc5e8bfdedcd895afcd670ba7d161f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/6a8b4fd394d58044a52fe932546120a375403904/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="94d358351559620a2c3d2ba3ac04d03a59a61bb3">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ba936179bb1517aed87a51a32b5ce439c76d342b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/c9b39e0b943ae0cb326d39af5af8eee58ee9563d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="28cb30c89c8e501ded77e960407731df6c54b844">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_81ddfc9115d92ce381ed035b79c351e7387ed93b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_0fe9472a51d75470d4719b6f27d0881065a49dcd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_367c156d3214c0db8c422e00d58493969de1c1ee/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/c34c1ee7e9d50c54222c4a54cbc0f91be2b54e0d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2115d9dd8708cb48e7481b1259ae9f00dc16a032">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_41daafa1c0a7c57f8b5880e93c7ea2ab31d6751a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/6abf1f36951249481057a6568ef4a8aa205b22b5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_940ba23535cf7dc2e3e49ba82c1bdd78a323d339/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/a25054667ef76ba5616928076b1a7b35ea20b0f0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="eef44a34be1eef845ecb4072e3692b434af05ad4">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b197f3374070e90fe9aa60668441ac2be31c9e11/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/95e704d55484778ab9ff9914cea2609ae9a5b496/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="53762fb1daacc5e5fb9ce83c4d00365f71c10f1a">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f4682bbe3d8f461c54f176e3f6b23a92f1949666/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.1/4d060ca3190df0eda4dc13415532a12e15ca5f11/okhttp-3.8.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="4d060ca3190df0eda4dc13415532a12e15ca5f11">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.8.1_fdae918c4a4b27c2f0346d33317cbbf71084445a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/4.0.0-RC1/7baec7d5132e7343100a99630a56a6584a33addc/glide-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="7baec7d5132e7343100a99630a56a6584a33addc">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-4.0.0-RC1_73a5c248b60e7fde6cdbeeb69401204393e3d70f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8a2fdf6ac981fb3a06fe8942b360d1258d131779">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_a21f5484a23204ee8b9c1984dc911f1bafbcf31c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/d58d368400a9b6d1fcc47c821b4caa0bb4d45ad5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_bf668fa67d9e9d96f5bcaf6fa225f5fb977140f9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/acbcfa8092f4d7473c569eccb6bbb9a61e45b255/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="990445ed9b269f2869913a806388ae2dc7f67d3b">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_96595969da1cedbee48aa7dec850f1083766b167/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.13.0_473ee1385aea91322ac84fc2c92cdea824867af8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/7449745b483eb95ddf8b11958ae458194b49f909/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="f9f219b8a8acc35922ab06f4ff29769041481b4b">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_aaa9082c3bc73a1a7d4d31df5590b91afc4f3226/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.0.0-RC1/1b4bba8f8d3df8db064c875c043c01e9ca3cdee9/disklrucache-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="1b4bba8f8d3df8db064c875c043c01e9ca3cdee9">
+        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/disklrucache-4.0.0-RC1_f895b8d37bf66d6ec78c1130a3bdf27f913d627d/classes.dex" />
+    </item>
+
+</items>

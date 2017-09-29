@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_content_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    app:columnCount="2"
+    app:orientation="vertical"
+    app:rowCount="4">
+
+    <ImageView
+        android:id="@+id/country_flag_imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shape_border_free"
+        android:padding="1dp"
+        app:layout_column="0"
+        app:layout_row="0"
+        app:layout_rowSpan="2" />
+    <TextView
+        android:id="@+id/country_name_title"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        app:layout_column="1"
+        app:layout_row="0" />
+    <TextView
+        android:id="@+id/show_in_map"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
+        android:drawableEnd="@drawable/ic_exit_to_app"
+        android:drawablePadding="4dp"
+        android:focusable="true"
+        android:soundEffectsEnabled="true"
+        android:text="@string/google_maps_intent_text"
+        android:textColor="@android:color/holo_blue_light"
+        app:layout_column="1"
+        app:layout_row="1" />
+    <FrameLayout
+        app:layout_column="0"
+        app:layout_columnSpan="2"
+        app:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_row="2">
+
+        <include
+            android:id="@+id/load_small_progress_bar"
+            layout="@layout/list_item_load_small"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp" />
+    </FrameLayout>
+    <ScrollView
+        android:layout_marginTop="16dp"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_column="0"
+        android:visibility="gone"
+        app:layout_columnSpan="2"
+        app:layout_row="2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp"
+            android:paddingBottom="8dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/country_detail_text"
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="Wikipedia"
+                    android:textColor="@android:color/darker_gray" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/wikipedia_logo" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.v7.widget.GridLayout>
+

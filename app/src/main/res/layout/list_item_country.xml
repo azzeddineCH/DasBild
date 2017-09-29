@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+    android:background="@android:color/white"
+android:paddingTop="8dp"
+android:paddingBottom="8dp"
+android:paddingEnd="16dp"
+android:paddingStart="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:soundEffectsEnabled="true"
+android:orientation="vertical">
+<ImageView
+    android:background="@drawable/shape_border_free"
+    android:padding="1dp"
+    android:id="@+id/flag"
+    android:layout_width="40dp"
+    android:layout_height="40dp" />
+<TextView
+    android:id="@+id/country_name"
+    android:textSize="14sp"
+    android:textColor="@color/dark_gray"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_gravity="center"
+    />
+</LinearLayout>

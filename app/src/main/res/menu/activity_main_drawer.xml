@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="@string/region_name">
+        <menu>
+            <group
+                android:id="@+id/regions"
+                android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/arab_region"
+                    android:icon="@drawable/ic_arab_region"
+                    android:title="@string/arabic" />
+
+                <item
+                    android:id="@+id/europe_region"
+                    android:icon="@drawable/ic_europe_region"
+                    android:title="@string/europe" />
+
+                <item
+                    android:id="@+id/africa_region"
+                    android:icon="@drawable/ic_africa_region"
+                    android:title="@string/africa" />
+
+                <item
+                    android:id="@+id/asia_region"
+                    android:icon="@drawable/ic_asia_region"
+                    android:title="@string/asia" />
+
+                <item
+                    android:id="@+id/america_region"
+                    android:icon="@drawable/ic_america_region"
+                    android:title="@string/north_america" />
+                <item
+                    android:id="@+id/south_america_region"
+                    android:icon="@drawable/ic_south_america"
+                    android:title="@string/south_america" />
+
+            </group>
+
+        </menu>
+    </item>
+
+
+</menu>

@@ -1,0 +1,23 @@
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="azeddine.project.summer.dasBild.activities.MainActivity"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <FrameLayout
+        android:id="@+id/fragment_countries_list_container"
+        android:layout_width="72dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        />
+    <FrameLayout
+        android:id="@+id/fragment_country_album_container"
+        android:layout_width="0dp"
+        android:background="@color/darker_white"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+
+</android.support.v7.widget.LinearLayoutCompat>

@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name" translatable="false">DasBild</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="region_name">Regions</string>
+
+    <string name="arabic">Arab world</string>
+    <string name="europe">Europe</string>
+    <string name="africa">Africa</string>
+    <string name="asia">Asia</string>
+    <string name="north_america">North America</string>
+    <string name="south_america">South America</string>
+    <string name="google_maps_intent_text">show in map</string>
+    <string name="google_maps_intent_error">Can not show in map</string>
+
+    <!-- region keys used in the RestCountries Api call -->
+    <string-array name="regions_keys">
+        <item>al</item>
+        <item>eu</item>
+        <item>au</item>
+        <item>Asia</item>
+        <item>nafta</item>
+        <item>usan</item>
+    </string-array>
+
+    <!-- region names used in 500px Api call -->
+    <string-array name="regions_search_names">
+        <item>Arab world</item>
+        <item>Europe</item>
+        <item>Africa</item>
+        <item >Asia</item>
+        <item>North America</item>
+        <item>South America</item>
+    </string-array>
+
+  <!-- albums categories used in 500px Api -->
+    <string-array name="albums_categories">
+        <item >Landscapes</item>
+        <item >Nature</item>
+        <item >City and Architecture</item>
+        <item >Night </item>
+        <item>Street</item>
+        <item>Travel</item>
+        <item>Still Life</item>
+        <item >Fine Art</item>
+        <item>Black and White</item>
+        <item >Food</item>
+    </string-array>
+
+
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF5722</color>
+    <color name="colorPrimaryDark">#D84315</color>
+    <color name="colorAccent">#ffca28</color>
+
+    <color name="white_smoke">#f5f5f5</color>
+    <color name="darker_white">#fafafa</color>
+    <color name="dark_gray">#A0A0A0</color>
+    <color name="blue_light">#33b5e5</color>
+
+    <color name="colorPrimary_low_opacity">#CCFF5722</color>
+    <color name="black_low_opacity">#32000000</color>
+</resources>
