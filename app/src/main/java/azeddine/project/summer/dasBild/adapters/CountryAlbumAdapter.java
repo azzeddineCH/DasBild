@@ -30,12 +30,10 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final String TAG = "CountryAlbumAdapter";
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
-    private final int VIEW_TYPE_EMPTY = -1;
 
     private Context mContext;
     private ArrayList<Photo> photos = new ArrayList<>();
     private int mAlbumColumnsNumber;
-
     static private OnLoadMoreListener mLoadMoreListener;
     static private OnPhotoClickedListener mOnPhotoClickedListener;
 
@@ -65,8 +63,8 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                 if (dy > 0) {
                     if (itemsNumber <= lastVisibleItemPosition + 6 && !isLoading()) {
-                        mLoadMoreListener.onLoadMore();
                         setAdapterLoadingState(true);
+                        mLoadMoreListener.onLoadMore();
                     }
                 }
             }
@@ -93,11 +91,7 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemViewType(int position) {
-        if(photos.isEmpty()){
-            return VIEW_TYPE_EMPTY;
-        }else{
             return photos.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
-        }
 
     }
 
@@ -107,11 +101,8 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (viewType == VIEW_TYPE_ITEM) {
             view = LayoutInflater.from(mContext).inflate(R.layout.list_item_album, parent, false);
             return new PhotoViewHolder(view);
-        } else if(viewType == VIEW_TYPE_LOADING){
+        } else{
             view = LayoutInflater.from(mContext).inflate(R.layout.list_item_load, parent, false);
-            return new LoadingProgressViewHolder(view);
-        }else {
-            view = LayoutInflater.from(mContext).inflate(R.layout.list_item_empty, parent, false);
             return new LoadingProgressViewHolder(view);
         }
 
@@ -143,11 +134,20 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return photos.size();
     }
 
-    public void updatePhotos(ArrayList<Photo> photosList) {
+    public void addPhotosToBottom(ArrayList<Photo> photosList) {
         if (photosList != null) {
-            if (!photos.containsAll(photosList)) {
-                photos.addAll(photosList);
-            }
+             for (Photo photo:photosList){
+                 if(!photos.contains(photo)) photos.add(photo);
+             }
+        }
+
+    }
+    public void addPhotosToTop(ArrayList<Photo> photosList) {
+        if (photosList != null) {
+            int segment = photos.size();
+           for(int i=segment-1;i>=0;i--){
+               if(!photosList.contains( photos.get(i))) photos.add(0,photos.get(i));
+           }
         }
 
     }
@@ -162,6 +162,7 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
        mLoadMoreListener = listener;
     }
 
+
     public void setOnPhotoClickedListener(OnPhotoClickedListener listener) {
         mOnPhotoClickedListener = listener;
     }
@@ -172,7 +173,6 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void setAdapterLoadingState(boolean recyclerViewLoadingState) {
         this.mAdapterViewLoadingState = recyclerViewLoadingState;
-        Log.d(TAG, "setAdapterLoadingState: ");
         if (mAdapterViewLoadingState) {
             photos.add(null);
             mRecyclerView.post(new Runnable() {
@@ -227,12 +227,4 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    private static class EmptyListItemViewHolder extends  RecyclerView.ViewHolder{
-
-
-        public EmptyListItemViewHolder(View itemView, Bitmap image) {
-            super(itemView);
-            itemView.findViewById(R.id.empty_list_image_view);
-        }
-    }
 }

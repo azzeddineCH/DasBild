@@ -59,8 +59,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
-
         super.onCreate(savedInstanceState);
+
+        setTheme(R.style.AppTheme_NoActionBar);
         setContentView(R.layout.activity_main);
 
 
@@ -292,6 +293,7 @@ public class MainActivity extends AppCompatActivity implements
         @Override
         public void onReceive(Context context, Intent intent) {
            boolean connectionState = ApiUtils.isOnline(context);
+           if(connectionState)  Toast.makeText(context, "Swipe to refresh", Toast.LENGTH_SHORT).show();
 
         }
 

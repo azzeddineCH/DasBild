@@ -126,16 +126,24 @@ public class CountryDetailsDialogFragment extends DialogFragment implements Load
 
             mProgressBar.setVisibility(View.GONE);
             mScrollView.setVisibility(View.VISIBLE);
-            mCountryDetailsTextView.setText(data);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if(data == null){
+                mCountryDetailsTextView.setText(R.string.no_signal);
+                mCountryDetailsTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            }else if (data.isEmpty()){
+                mCountryDetailsTextView.setText(R.string.no_details);
+                mCountryDetailsTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            }else{
+                mCountryDetailsTextView.setText(data);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
 
-                enterAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_up_fade_in);
-                enterAnimation.setDuration(350);
-                enterAnimation.setInterpolator(AnimationUtils.loadInterpolator(
-                        getContext(),
-                        android.R.interpolator.linear
-                ));
-                mCountryDetailsTextView.startAnimation(enterAnimation);
+                    enterAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_up_fade_in);
+                    enterAnimation.setDuration(350);
+                    enterAnimation.setInterpolator(AnimationUtils.loadInterpolator(
+                            getContext(),
+                            android.R.interpolator.linear
+                    ));
+                    mCountryDetailsTextView.startAnimation(enterAnimation);
+                }
             }
         }
 

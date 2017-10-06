@@ -4,6 +4,10 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="could_not_refresh_text">Could not refresh,no Internet</string>
+    <string name="no_photos">No photos available</string>
+    <string name="no_signal">No network signal</string>
+    <string name="no_details">No information available</string>
 
     <string name="action_settings">Settings</string>
     <string name="region_name">Regions</string>
