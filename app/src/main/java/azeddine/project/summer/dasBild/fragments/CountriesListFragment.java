@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.activities.MainActivity;
@@ -26,7 +27,7 @@ import azeddine.project.summer.dasBild.objectsUtils.KeysUtil;
  * Created by azeddine on 28/07/17.
  */
 
-public class CountriesListFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<Country>> {
+public class CountriesListFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<Country>> {
     public static final String TAG = "CountriesListFragment";
 
     private RecyclerView mCountriesRecyclerView;
@@ -86,7 +87,7 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
     }
     
     @Override
-    public Loader<ArrayList<Country>> onCreateLoader(int id, Bundle args) {
+    public Loader<List<Country>> onCreateLoader(int id, Bundle args) {
         Log.d(TAG, "onCreateLoader: ");
         switch (id){
             case KeysUtil.COUNTRIES_LIST_LOADER_ID:
@@ -96,10 +97,10 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
         }
     }
     @Override
-    public void onLoadFinished(Loader<ArrayList<Country>> loader, ArrayList<Country> data) {
+    public void onLoadFinished(Loader<List<Country>> loader, List<Country> data) {
         Log.d(TAG, "onLoadFinished: ");
         if(loader.getId() == KeysUtil.COUNTRIES_LIST_LOADER_ID){
-            Country regionCountries = new Country(mRegionName,"ALL","ALL",null);
+            Country regionCountries = new Country(mRegionName,"ALL","ALL",null,mRegionName);
             if(data != null) {
                 if(!data.contains(regionCountries)) data.add(0,regionCountries);
                   mCountriesListAdapter.setCountriesList(data,mFocusedCountryName);
@@ -110,7 +111,7 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
 
     }
     @Override
-    public void onLoaderReset(Loader<ArrayList<Country>> loader) {
+    public void onLoaderReset(Loader<List<Country>> loader) {
         Log.d(TAG, "onLoaderReset: ");
 
     }

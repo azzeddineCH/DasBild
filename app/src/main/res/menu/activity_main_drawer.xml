@@ -37,9 +37,23 @@
                     android:id="@+id/south_america_region"
                     android:icon="@drawable/ic_south_america"
                     android:title="@string/south_america" />
-
             </group>
-
+        </menu>
+    </item>
+    <item android:title="@string/bookmarks_title">
+        <menu>
+            <group
+                android:id="@+id/bookmarks"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/bookmarked_countries_regions"
+                    android:title="@string/regions_bookmarks_title"
+                    android:icon="@drawable/ic_map_marker"/>
+                <item
+                    android:id="@+id/bookmarked_photos"
+                    android:title="@string/photos_bookmarks_title"
+                    android:icon="@drawable/ic_photo_marker"/>
+            </group>
         </menu>
     </item>
 

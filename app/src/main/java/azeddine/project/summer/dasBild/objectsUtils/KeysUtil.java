@@ -19,5 +19,7 @@ public class KeysUtil {
     public static final int ALBUM_LOADER_ID = 1;
     public static final int COUNTRY_DETAILS_LOADER_ID = 2;
 
+    public static final String BOOKMARK_KEY = "BOOKMARK_KEY";
+
 
 }

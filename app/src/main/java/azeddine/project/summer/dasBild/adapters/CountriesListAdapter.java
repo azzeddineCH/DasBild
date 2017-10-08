@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.objectsUtils.Country;
@@ -36,7 +37,7 @@ public class CountriesListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private Context mContext;
     private Country mFocusedCountry;
-    private ArrayList<Country> mCountries = new ArrayList<>();
+    private List<Country> mCountries = new ArrayList<>();
     static private OnCountryItemClickedListener mOnCountryItemClickedListener;
     static private OnCountryItemLongClickedListener mOnCountryItemLongClickedListener;
     private boolean mRecyclerViewLoadingState;
@@ -132,7 +133,7 @@ public class CountriesListAdapter extends RecyclerView.Adapter<RecyclerView.View
         return (mFocusedCountry != null) ? mFocusedCountry.getName() : null;
     }
 
-    public void setCountriesList(ArrayList<Country> countriesList, String focusedCountryName) {
+    public void setCountriesList(List<Country> countriesList, String focusedCountryName) {
         int position;
         setRecyclerViewLoadingState(false);
         if (countriesList != null) {

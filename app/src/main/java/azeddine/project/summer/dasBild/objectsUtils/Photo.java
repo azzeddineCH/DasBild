@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by azeddine on 28/07/17.
  */
 
-public class Photo implements Serializable {
+public class Photo extends BookmarkedItem implements Serializable{
     private String id;
     private String description;
     private String title;

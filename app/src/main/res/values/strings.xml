@@ -2,24 +2,29 @@
     <string name="app_name" translatable="false">DasBild</string>
     <string name="title_activity_main2">Main2Activity</string>
 
+    <!-- messages to display -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="could_not_refresh_text">Could not refresh,no Internet</string>
     <string name="no_photos">No photos available</string>
     <string name="no_signal">No network signal</string>
     <string name="no_details">No information available</string>
+    <string name="google_maps_intent_text">show in map</string>
+    <string name="google_maps_intent_error">Can not show in map</string>
 
     <string name="action_settings">Settings</string>
     <string name="region_name">Regions</string>
 
+    <!-- navigation drawer regions name -->
     <string name="arabic">Arab world</string>
     <string name="europe">Europe</string>
     <string name="africa">Africa</string>
     <string name="asia">Asia</string>
     <string name="north_america">North America</string>
     <string name="south_america">South America</string>
-    <string name="google_maps_intent_text">show in map</string>
-    <string name="google_maps_intent_error">Can not show in map</string>
+    <string name="bookmarks_title">bookmarks</string>
+    <string name="regions_bookmarks_title">Regions and countries</string>
+    <string name="photos_bookmarks_title">Photos</string>
 
     <!-- region keys used in the RestCountries Api call -->
     <string-array name="regions_keys">
@@ -46,7 +51,7 @@
         <item >Landscapes</item>
         <item >Nature</item>
         <item >City and Architecture</item>
-        <item >Night </item>
+        <item >Night</item>
         <item>Street</item>
         <item>Travel</item>
         <item>Still Life</item>

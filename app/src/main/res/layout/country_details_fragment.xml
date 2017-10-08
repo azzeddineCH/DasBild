@@ -9,13 +9,27 @@
     android:paddingEnd="16dp"
     android:paddingStart="16dp"
     android:paddingTop="8dp">
-
-    <ImageView
-        android:id="@+id/country_flag_imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/shape_border_free"
-        android:padding="1dp" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/country_flag_imageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_border_free"
+            android:padding="1dp" />
+        <ImageView
+            android:id="@+id/bookmark_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:soundEffectsEnabled="true"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bookmark_border"/>
+    </FrameLayout>
     <TextView
         android:id="@+id/country_name_title"
         style="@style/TextAppearance.AppCompat.Title"

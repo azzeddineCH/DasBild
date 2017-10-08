@@ -1,6 +1,7 @@
 package azeddine.project.summer.dasBild.activities;
 
 import android.app.usage.NetworkStats;
+import android.arch.persistence.room.Room;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import azeddine.project.summer.dasBild.ApiUtils;
+import azeddine.project.summer.dasBild.DasBildDataBase;
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.adapters.CountriesListAdapter;
 import azeddine.project.summer.dasBild.adapters.CountryAlbumAdapter;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements
     private static final String TAG = "MainActivity";
     public static final String DEFAULT_REGION_NAME = "Arab world";
     public static final String DEFAULT_CATEGORY = "Landscapes";
+    public static DasBildDataBase dasBildDataBase;
 
     private DrawerLayout mDrawer;
     private TabLayout mAlbumCategoriesTabLayout;
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements
         setTheme(R.style.AppTheme_NoActionBar);
         setContentView(R.layout.activity_main);
 
+        dasBildDataBase = Room.databaseBuilder(this,DasBildDataBase.class,"db").build();
 
         Toolbar mToolbar = findViewById(R.id.toolbar);
         mToolbar.findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
@@ -153,9 +157,8 @@ public class MainActivity extends AppCompatActivity implements
         DialogFragment fragment = new CountryDetailsDialogFragment();
         Bundle args = new Bundle();
         args.putString(KeysUtil.COUNTRY_NAME_KEY, country.getName());
-        args.putString(KeysUtil.COUNTRY_FLAG_URL_KEY, country.getFlagURL());
         fragment.setArguments(args);
-        fragment.show(getSupportFragmentManager(), "bd");
+        fragment.show(getSupportFragmentManager(), CountryDetailsDialogFragment.TAG);
     }
 
     @Override
@@ -219,6 +222,15 @@ public class MainActivity extends AppCompatActivity implements
                 currentCountryName = currentRegionName;
                 startCountriesListFragment(selectedRegionTitle);
                 startAlbumFragment(selectedRegionTitle, currentCategoryName);
+            }
+        }else if(groupId == R.id.bookmarks){
+            switch (id){
+                case R.id.bookmarked_countries_regions:
+                    break;
+                case R.id.bookmarked_photos:
+                    break;
+                default:
+                    break;
             }
         }
         mDrawer.closeDrawer(GravityCompat.START);

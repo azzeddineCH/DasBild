@@ -11,16 +11,18 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import azeddine.project.summer.dasBild.ApiUtils;
 import azeddine.project.summer.dasBild.R;
+import azeddine.project.summer.dasBild.activities.MainActivity;
 import azeddine.project.summer.dasBild.objectsUtils.Country;
 
 /**
  * Created by azeddine on 29/07/17.
  */
 
-public class CountriesListLoader extends AsyncTaskLoader<ArrayList<Country>> {
+public class CountriesListLoader extends AsyncTaskLoader<List<Country>> {
     private static final String TAG = "CountriesListLoader";
     private static final String REST_COUNTRY_API_V2 = "https://restcountries.eu/rest/v2";
     private static final String REST_COUNTRY_API_V1 = "https://restcountries.eu/rest/v1";
@@ -37,32 +39,36 @@ public class CountriesListLoader extends AsyncTaskLoader<ArrayList<Country>> {
     }
 
     @Override
-    public ArrayList<Country> loadInBackground() {
+    public List<Country> loadInBackground() {
         String responseBodyString;
         JSONArray countriesJsonArray;
         JSONObject countryJsonObject;
-        ArrayList<Country> countryArrayList = new ArrayList<>();
-        Uri url = new Uri.Builder()
-                .encodedPath(getApiStartPoint(regionKey))
-                .appendPath(getApiEndPoint(regionKey))
-                .appendPath(regionKey)
-                .encodedQuery("fields=name;alpha2Code;alpha3Code")
-                .build();
-        try {
-            responseBodyString = ApiUtils.run(url);
-            countriesJsonArray = new JSONArray(responseBodyString);
+        List<Country> countriesList;
+        countriesList = MainActivity.dasBildDataBase.countryRoomDAO().selectRegionCountries(regionKey);
+        if (countriesList.isEmpty()){
+            Uri url = new Uri.Builder()
+                    .encodedPath(getApiStartPoint(regionKey))
+                    .appendPath(getApiEndPoint(regionKey))
+                    .appendPath(regionKey)
+                    .encodedQuery("fields=name;alpha2Code;alpha3Code")
+                    .build();
+            try {
+                responseBodyString = ApiUtils.run(url);
+                countriesJsonArray = new JSONArray(responseBodyString);
 
-            for (int i = 0; i < countriesJsonArray.length(); i++) {
-                countryJsonObject = countriesJsonArray.getJSONObject(i);
-                if (!countryJsonObject.getString("name").equalsIgnoreCase("israel"))
-                    countryArrayList.add(getCountryInstance(countryJsonObject));
+                for (int i = 0; i < countriesJsonArray.length(); i++) {
+                    countryJsonObject = countriesJsonArray.getJSONObject(i);
+                    if (!countryJsonObject.getString("name").equalsIgnoreCase("israel"))
+                        countriesList.add(getCountryInstance(countryJsonObject));
+                }
+                MainActivity.dasBildDataBase.countryRoomDAO().insertCountries(countriesList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
-        return countryArrayList;
+        return countriesList;
 
 
     }
@@ -82,7 +88,7 @@ public class CountriesListLoader extends AsyncTaskLoader<ArrayList<Country>> {
         twoAlphaCode = jsonObject.getString("alpha2Code");
         threeAlphaCode = jsonObject.getString("alpha3Code");
         String flagUrl = FLAG_BASE_URL + twoAlphaCode.toLowerCase() + ".png";
-        return new Country(name, twoAlphaCode, threeAlphaCode, flagUrl);
+        return new Country(name,twoAlphaCode,threeAlphaCode,flagUrl,regionKey);
 
     }
 

@@ -8,7 +8,7 @@
     android:paddingEnd="16dp"
     android:paddingStart="16dp"
     android:paddingTop="8dp"
-    app:columnCount="2"
+    app:columnCount="3"
     app:orientation="vertical"
     app:rowCount="4">
 
@@ -21,6 +21,19 @@
         app:layout_column="0"
         app:layout_row="0"
         app:layout_rowSpan="2" />
+    <ImageView
+        android:id="@+id/bookmark_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:soundEffectsEnabled="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_bookmark_border"
+        app:layout_column="2"
+        app:layout_gravity="end"
+        android:layout_marginEnd="4dp"
+        app:layout_row="0"
+        />
     <TextView
         android:id="@+id/country_name_title"
         style="@style/TextAppearance.AppCompat.Title"
@@ -50,7 +63,7 @@
         app:layout_row="1" />
     <FrameLayout
         app:layout_column="0"
-        app:layout_columnSpan="2"
+        app:layout_columnSpan="3"
         app:layout_gravity="center"
         android:layout_marginTop="16dp"
         app:layout_row="2">
@@ -68,7 +81,7 @@
         android:layout_height="150dp"
         app:layout_column="0"
         android:visibility="gone"
-        app:layout_columnSpan="2"
+        app:layout_columnSpan="3"
         app:layout_row="2">
         <LinearLayout
             android:layout_width="match_parent"
