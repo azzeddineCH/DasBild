@@ -1,5 +1,6 @@
 package azeddine.project.summer.dasBild.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
@@ -197,7 +198,10 @@ public class CountryAlbumFragment extends Fragment implements LoaderManager.Load
     public void onLoaderReset(Loader<Object> loader) {
 
     }
+
     public void resetAlbumScroll(){
         mAlbumRecyclerView.smoothScrollToPosition(0);
     }
+
+
 }

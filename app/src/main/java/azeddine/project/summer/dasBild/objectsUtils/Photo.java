@@ -1,19 +1,36 @@
 package azeddine.project.summer.dasBild.objectsUtils;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
  * Created by azeddine on 28/07/17.
  */
 
-public class Photo extends BookmarkedItem implements Serializable{
+@Entity(tableName = "bookmarked_photo", indices = {@Index(value = "id",unique = true)})
+public class Photo implements Serializable{
+
+    @PrimaryKey
+    @NonNull
     private String id;
+    @Ignore
     private String description;
+    @Ignore
     private String title;
+    @Ignore
     private String croppedPhotoUrl;
+    @Ignore
     private String unCroppedPhotoUrl;
+    @Ignore
     private String photographerUsername;
+    @Ignore
     private String photographerImageUrl;
+    @Ignore
     private String dateString;
 
 

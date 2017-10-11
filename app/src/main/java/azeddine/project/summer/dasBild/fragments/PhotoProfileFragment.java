@@ -2,6 +2,7 @@ package azeddine.project.summer.dasBild.fragments;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -11,7 +12,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -32,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import azeddine.project.summer.dasBild.R;
+import azeddine.project.summer.dasBild.activities.MainActivity;
 import azeddine.project.summer.dasBild.objectsUtils.Photo;
 
 /**
@@ -52,6 +58,9 @@ public class PhotoProfileFragment extends Fragment {
     private ImageView mExpendIconImageView;
     private SlidingUpPanelLayout mSlidingPaneLayout;
     private View mDragView;
+    private Menu mMenu;
+    private boolean mBookmarkedPhoto = false;
+    private Photo mPhoto;
 
     public PhotoProfileFragment() {
     }
@@ -86,15 +95,15 @@ public class PhotoProfileFragment extends Fragment {
 
             }
         });
-
-        activity.setSupportActionBar((Toolbar) view.findViewById(R.id.toolbar));
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        activity.setSupportActionBar(toolbar);
         final ActionBar actionBar = activity.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(null);
             actionBar.setShowHideAnimationEnabled(true);
         }
-
+        setHasOptionsMenu(true);
 
         mPhotoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,15 +127,40 @@ public class PhotoProfileFragment extends Fragment {
     }
 
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        Log.d(TAG, "onCreateOptionsMenu: ");
+        mMenu = menu;
+        new BookmarkedPhotoSelectionTask().execute(mPhoto.getId());
+        inflater.inflate(R.menu.photo_profile_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.bookmark_action:
+                if(mBookmarkedPhoto)
+                            new UnSetPhotoAsBookmarkedTask().execute(mPhoto);
+                        else
+                            new SetPhotoAsBookmarkedTask().execute(mPhoto);
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @SuppressLint("RestrictedApi")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onActivityCreated: ");
         super.onActivityCreated(savedInstanceState);
-        Photo photo = (Photo) getArguments().getSerializable("Photo");
-        if (photo != null) {
+        mPhoto = (Photo) getArguments().getSerializable("Photo");
+        if (mPhoto != null) {
 
             Glide.with(this)
-                    .load(photo.getUnCroppedPhotoUrl())
+                    .load(mPhoto.getUnCroppedPhotoUrl())
                     .apply(new RequestOptions().error(R.drawable.ic_terrain_))
                     .listener(new RequestListener<Drawable>() {
                         @Override
@@ -144,15 +178,15 @@ public class PhotoProfileFragment extends Fragment {
                     .into(mPhotoImageView);
 
             Glide.with(this)
-                    .load(photo.getPhotographerImageUrl())
+                    .load(mPhoto.getPhotographerImageUrl())
                     .apply(new RequestOptions().circleCrop())
                     .into(mPhotographerProfileImage);
 
-            String text = photo.getPhotographerUsername();
+            String text = mPhoto.getPhotographerUsername();
             if (text != null) mPhotographerNameTextView.setText(text);
-            text = photo.getTitle();
+            text = mPhoto.getTitle();
             if (text != null) mPhotoTitle.setText(text);
-            text = photo.getDateString();
+            text = mPhoto.getDateString();
             if (text != null) {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 try {
@@ -260,4 +294,53 @@ public class PhotoProfileFragment extends Fragment {
     public void setSlidingPanelState(SlidingUpPanelLayout.PanelState panelState) {
         mSlidingPaneLayout.setPanelState(panelState);
     }
-}
+
+    private class BookmarkedPhotoSelectionTask extends AsyncTask<String,Void,Photo> {
+
+        @Override
+        protected Photo doInBackground(String... strings) {
+            return  MainActivity.dasBildDataBase.photoRoomDAO().selectPhotoById(strings[0]);
+            }
+        @Override
+        protected void onPostExecute(Photo photo) {
+            super.onPostExecute(photo);
+            if(photo != null){
+                mMenu.getItem(0).setIcon(R.drawable.ic_bookmark_white);
+                mBookmarkedPhoto = true;
+            }
+        }
+    }
+    private class UnSetPhotoAsBookmarkedTask extends AsyncTask<Photo,Void,Void> {
+
+
+        @Override
+        protected Void doInBackground(Photo... photos) {
+            MainActivity.dasBildDataBase.photoRoomDAO().deletePhoto(photos[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            mMenu.getItem(0).setIcon(R.drawable.ic_bookmark_border_white);
+            mBookmarkedPhoto = false;
+        }
+    }
+    private class SetPhotoAsBookmarkedTask extends AsyncTask<Photo,Void,Void> {
+
+        @Override
+        protected Void doInBackground(Photo... photos) {
+            MainActivity.dasBildDataBase.photoRoomDAO().insertPhoto(photos[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            mMenu.getItem(0).setIcon(R.drawable.ic_bookmark_white);
+            mBookmarkedPhoto = true;
+
+        }
+    }
+    }
+
