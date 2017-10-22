@@ -226,6 +226,8 @@ public class MainActivity extends AppCompatActivity implements
         }else if(groupId == R.id.bookmarks){
             switch (id){
                 case R.id.bookmarked_countries_regions:
+                    currentRegionName = null;
+                    startCountriesListFragment(currentRegionName);
                     break;
                 case R.id.bookmarked_photos:
                     break;
@@ -281,11 +283,12 @@ public class MainActivity extends AppCompatActivity implements
 
     private void startCountriesListFragment(String region) {
         Log.d(TAG, "startCountriesListFragment: ");
-        Bundle args = new Bundle();
-        args.putString(KeysUtil.REGION_NAME_KEY, region);
         CountriesListFragment countriesListFragment = new CountriesListFragment();
-        countriesListFragment.setArguments(args);
-
+        if(region != null){
+            Bundle args = new Bundle();
+            args.putString(KeysUtil.REGION_NAME_KEY, region);
+            countriesListFragment.setArguments(args);
+        }
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_countries_list_container, countriesListFragment, CountriesListFragment.TAG)
                 .commit();

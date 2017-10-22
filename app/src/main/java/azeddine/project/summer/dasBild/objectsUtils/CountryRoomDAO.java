@@ -29,4 +29,7 @@ public interface CountryRoomDAO{
 
     @Query("SELECT * FROM countries WHERE name= :name LIMIT 1")
     Country selectCountry(String name);
+
+    @Query("SELECT * FROM countries WHERE bookmarked ORDER BY name")
+    List<Country> selectBookmarkedCountry();
 }

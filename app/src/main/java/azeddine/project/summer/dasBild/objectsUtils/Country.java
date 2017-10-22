@@ -23,13 +23,13 @@ public class Country extends BookmarkedItem{
     private String capital;
 
     private String flagURL;
+
     private String twoAlphaCode;
 
 
     private String threeAlphaCode;
 
     private String region;
-
 
 
 

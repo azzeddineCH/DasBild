@@ -147,7 +147,6 @@ public class CountryDetailsDialogFragment extends DialogFragment implements Load
     @Override
     public void onLoadFinished(Loader<String> loader, String data) {
         if (loader.getId() == KeysUtil.COUNTRY_DETAILS_LOADER_ID) {
-
             mProgressBar.setVisibility(View.GONE);
             mScrollView.setVisibility(View.VISIBLE);
             if(data == null){
@@ -195,8 +194,13 @@ public class CountryDetailsDialogFragment extends DialogFragment implements Load
         protected void onPostExecute(Country country) {
             super.onPostExecute(country);
             mCountry = country;
-            if (mCountry.isBookmarked()) mBookmarkIconButton.setImageResource(R.drawable.ic_bookmark);
-            String mCountryFlagUrl = country.getFlagURL();
+            String mCountryFlagUrl = null;
+            if(country == null){
+                mBookmarkIconButton.setVisibility(View.GONE);
+            }else {
+                if (mCountry.isBookmarked()) mBookmarkIconButton.setImageResource(R.drawable.ic_bookmark);
+                mCountryFlagUrl = country.getFlagURL();
+            }
             mCountryNameTextView.setText(mCountryName);
             Glide.with(getContext()).load(mCountryFlagUrl  == null ? R.mipmap.plant_earth : mCountryFlagUrl )
                     .apply(new RequestOptions().circleCrop())

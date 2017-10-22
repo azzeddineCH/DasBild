@@ -14,11 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.activities.MainActivity;
 import azeddine.project.summer.dasBild.adapters.CountriesListAdapter;
+import azeddine.project.summer.dasBild.loaders.BookmarkedCountriesLoader;
 import azeddine.project.summer.dasBild.loaders.CountriesListLoader;
 import azeddine.project.summer.dasBild.objectsUtils.Country;
 import azeddine.project.summer.dasBild.objectsUtils.KeysUtil;
@@ -42,10 +44,8 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
-        if(savedInstanceState != null) {
-            mFocusedCountryName = savedInstanceState.getString(KeysUtil.ALBUM_NAME_KEY);
-            Log.d(TAG, "there are items saved");
-        }
+        if(savedInstanceState != null) mFocusedCountryName = savedInstanceState.getString(KeysUtil.ALBUM_NAME_KEY);
+
     }
 
     @Nullable
@@ -59,8 +59,8 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "onViewCreated: ");
+        super.onViewCreated(view, savedInstanceState);
         mCountriesListAdapter = new CountriesListAdapter(getContext());
         int scrollOrientation = ((MainActivity)getContext()).getCountriesListScrollOrientation();
         mCountriesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),scrollOrientation,false));
@@ -72,10 +72,16 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onActivityCreated: ");
         super.onActivityCreated(savedInstanceState);
-            mRegionName = getArguments().getString(KeysUtil.REGION_NAME_KEY);
+        Bundle fragmentArgs = getArguments();
+        if(fragmentArgs != null){
+            mRegionName =  fragmentArgs.getString(KeysUtil.REGION_NAME_KEY);
             Bundle args = new Bundle();
             args.putString(KeysUtil.REGION_NAME_KEY, mRegionName);
+            Log.d(TAG, "onActivityCreated: loading args");
             getLoaderManager().initLoader(KeysUtil.COUNTRIES_LIST_LOADER_ID,args,this);
+        }else {
+            getLoaderManager().initLoader(KeysUtil.BOOKMARKED_COUNTRY_DETAILS_LOADER_ID,null,this);
+        }
 
     }
 
@@ -92,20 +98,23 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
         switch (id){
             case KeysUtil.COUNTRIES_LIST_LOADER_ID:
                 return new CountriesListLoader(getContext(),args.getString(KeysUtil.REGION_NAME_KEY));
+            case KeysUtil.BOOKMARKED_COUNTRY_DETAILS_LOADER_ID:
+                Log.d(TAG, "onCreateLoader: searching in the database");
+                return new BookmarkedCountriesLoader(getContext());
             default:
                 return null;
         }
     }
     @Override
     public void onLoadFinished(Loader<List<Country>> loader, List<Country> data) {
-        Log.d(TAG, "onLoadFinished: ");
-        if(loader.getId() == KeysUtil.COUNTRIES_LIST_LOADER_ID){
-            Country regionCountries = new Country(mRegionName,"ALL","ALL",null,mRegionName);
+        int loaderId = loader.getId();
+        if(loaderId == KeysUtil.COUNTRIES_LIST_LOADER_ID){
             if(data != null) {
+                Country regionCountries = new Country(mRegionName,"ALL","ALL",null,mRegionName);
                 if(!data.contains(regionCountries)) data.add(0,regionCountries);
-                  mCountriesListAdapter.setCountriesList(data,mFocusedCountryName);
             }
         }
+        mCountriesListAdapter.setCountriesList(data,mFocusedCountryName);
 
 
 
