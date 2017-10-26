@@ -1,11 +1,9 @@
 package azeddine.project.summer.dasBild.activities;
 
-import android.app.usage.NetworkStats;
 import android.arch.persistence.room.Room;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -22,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -35,8 +34,9 @@ import azeddine.project.summer.dasBild.DasBildDataBase;
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.adapters.CountriesListAdapter;
 import azeddine.project.summer.dasBild.adapters.CountryAlbumAdapter;
+import azeddine.project.summer.dasBild.fragments.BookmarksAlbumFragment;
 import azeddine.project.summer.dasBild.fragments.CountriesListFragment;
-import azeddine.project.summer.dasBild.fragments.CountryAlbumFragment;
+import azeddine.project.summer.dasBild.fragments.OnlineAlbumFragment;
 import azeddine.project.summer.dasBild.fragments.CountryDetailsDialogFragment;
 import azeddine.project.summer.dasBild.fragments.PhotoProfileFragment;
 import azeddine.project.summer.dasBild.objectsUtils.Country;
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private DrawerLayout mDrawer;
     private TabLayout mAlbumCategoriesTabLayout;
+    private FrameLayout mCountriesListFragmentContainer;
 
     private String currentCountryName;
     private String currentCategoryName = DEFAULT_CATEGORY;
@@ -73,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements
         mToolbar.findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fm = getSupportFragmentManager().findFragmentByTag(CountryAlbumFragment.TAG);
-                if (fm != null) ((CountryAlbumFragment)fm).resetAlbumScroll();
+                Fragment fm = getSupportFragmentManager().findFragmentByTag(OnlineAlbumFragment.TAG);
+                if (fm != null) ((OnlineAlbumFragment)fm).resetAlbumScroll();
 
             }
         });
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements
             currentRegionName = savedInstanceState.getString(KeysUtil.REGION_NAME_KEY);
             mAlbumCategoriesTabLayout.getTabAt(albumCategories.indexOf(currentCategoryName)).select();
         }
+        mCountriesListFragmentContainer = findViewById(R.id.fragment_countries_list_container);
 
     }
 
@@ -133,9 +135,10 @@ public class MainActivity extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
         FragmentManager fm = getSupportFragmentManager();
-
-        if (fm.findFragmentByTag(CountriesListFragment.TAG) == null) startCountriesListFragment(DEFAULT_REGION_NAME);
-        if (fm.findFragmentByTag(CountryAlbumFragment.TAG) == null)  startAlbumFragment(DEFAULT_REGION_NAME, DEFAULT_CATEGORY);
+        if(fm.findFragmentByTag(BookmarksAlbumFragment.TAG) == null){
+            if (fm.findFragmentByTag(CountriesListFragment.TAG) == null) startCountriesListFragment(DEFAULT_REGION_NAME);
+            if (fm.findFragmentByTag(OnlineAlbumFragment.TAG) == null)  startAlbumFragment(DEFAULT_REGION_NAME, DEFAULT_CATEGORY);
+        }
 
 
     }
@@ -230,6 +233,8 @@ public class MainActivity extends AppCompatActivity implements
                     startCountriesListFragment(currentRegionName);
                     break;
                 case R.id.bookmarked_photos:
+                    currentRegionName = null;
+                    startBookmarkedPhotosFragment();
                     break;
                 default:
                     break;
@@ -243,7 +248,10 @@ public class MainActivity extends AppCompatActivity implements
     public void onTabSelected(TabLayout.Tab tab) {
         Log.d(TAG, "onTabSelected: ");
         currentCategoryName = tab.getText().toString();
-        startAlbumFragment(currentCountryName, currentCategoryName);
+        if (getSupportFragmentManager().findFragmentByTag(OnlineAlbumFragment.TAG) != null){
+                 startAlbumFragment(currentCountryName, currentCategoryName);
+            Log.d(TAG, "onTabSelected: this is me");
+        }
 
     }
 
@@ -273,11 +281,11 @@ public class MainActivity extends AppCompatActivity implements
         args.putString(KeysUtil.ALBUM_NAME_KEY, name);
         args.putString(KeysUtil.CATEGORY_NAME_KEY, category);
 
-        CountryAlbumFragment countryAlbumFragment = new CountryAlbumFragment();
+        OnlineAlbumFragment countryAlbumFragment = new OnlineAlbumFragment();
         countryAlbumFragment.setArguments(args);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_country_album_container, countryAlbumFragment, CountryAlbumFragment.TAG)
+                .replace(R.id.fragment_country_album_container, countryAlbumFragment, OnlineAlbumFragment.TAG)
                 .commit();
     }
 
@@ -289,8 +297,31 @@ public class MainActivity extends AppCompatActivity implements
             args.putString(KeysUtil.REGION_NAME_KEY, region);
             countriesListFragment.setArguments(args);
         }
+        if(mCountriesListFragmentContainer.getVisibility() == View.GONE) mCountriesListFragmentContainer.setVisibility(View.VISIBLE);
+        findViewById(R.id.fragment_countries_list_container).setVisibility(View.VISIBLE);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_countries_list_container, countriesListFragment, CountriesListFragment.TAG)
+                .commit();
+    }
+
+    private void startBookmarkedPhotosFragment(){
+        Log.d(TAG, "startBookmarkedPhotosFragment: ");
+
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentByTag(CountriesListFragment.TAG);
+
+        fm.beginTransaction()
+                .remove(fragment)
+                .commit();
+
+
+        fm.beginTransaction()
+                .detach(fragment)
+                .commit();
+        mCountriesListFragmentContainer.setVisibility(View.GONE);
+        BookmarksAlbumFragment bookmarksAlbumFragment = new BookmarksAlbumFragment();
+        fm.beginTransaction()
+                .replace(R.id.fragment_country_album_container, bookmarksAlbumFragment,bookmarksAlbumFragment.TAG)
                 .commit();
     }
 

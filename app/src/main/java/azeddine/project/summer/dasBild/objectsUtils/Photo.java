@@ -18,19 +18,12 @@ public class Photo implements Serializable{
     @PrimaryKey
     @NonNull
     private String id;
-    @Ignore
     private String description;
-    @Ignore
     private String title;
-    @Ignore
     private String croppedPhotoUrl;
-    @Ignore
     private String unCroppedPhotoUrl;
-    @Ignore
     private String photographerUsername;
-    @Ignore
     private String photographerImageUrl;
-    @Ignore
     private String dateString;
 
 

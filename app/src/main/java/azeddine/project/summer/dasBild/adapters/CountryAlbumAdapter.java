@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.objectsUtils.Photo;
@@ -32,7 +33,7 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private final int VIEW_TYPE_LOADING = 1;
 
     private Context mContext;
-    private ArrayList<Photo> photos = new ArrayList<>();
+    private List<Photo> photos = new ArrayList<>();
     private int mAlbumColumnsNumber;
     static private OnLoadMoreListener mLoadMoreListener;
     static private OnPhotoClickedListener mOnPhotoClickedListener;
@@ -108,7 +109,7 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
-    public ArrayList<Photo> getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
@@ -134,7 +135,7 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return photos.size();
     }
 
-    public void addPhotosToBottom(ArrayList<Photo> photosList) {
+    public void addPhotosToBottom(List<Photo> photosList) {
         if (photosList != null) {
              for (Photo photo:photosList){
                  if(!photos.contains(photo)) photos.add(photo);
@@ -142,7 +143,7 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
     }
-    public void addPhotosToTop(ArrayList<Photo> photosList) {
+    public void addPhotosToTop(List<Photo> photosList) {
         if (photosList != null) {
             int segment = photos.size();
            for(int i=segment-1;i>=0;i--){

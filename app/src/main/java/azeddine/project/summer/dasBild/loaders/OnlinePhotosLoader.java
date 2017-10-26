@@ -18,29 +18,20 @@ import azeddine.project.summer.dasBild.objectsUtils.Photo;
  * Created by azeddine on 31/07/17.
  */
 
-public class CountryAlbumLoader extends AsyncTaskLoader<Object> {
+public class OnlinePhotosLoader extends PhotosLoader {
 
-    private static final String TAG = "CountryAlbumLoader";
+    private static final String TAG = "OnlinePhotosLoader";
 
     private static final String PHOTO_API_BASE_URL = "https://api.500px.com/v1/photos";
     private static final String API_CONSUMER_KEY = "8rESAvR28TpJTguNMbEabYUkDRBXK2ldh2H6Ypy0";
     private static final String API_CROPPED_IMAGE_SIZE = "200";
     private static final String API_UNCROPPED_IMAGE_SIZE = "1080";
 
-    private static final int ALBUM_PAGE_IMAGE_NUM = 30;
-    public static final int DEFAULT_ALBUM_PAGE = 1;
 
-
-    private String mCountryName;
-    private String mCategoryName;
-    private int mAlbumPageNumber = DEFAULT_ALBUM_PAGE;
-    private ArrayList<Photo> mSavedPhotos;
-
-
-    public CountryAlbumLoader(Context context, String countryName, String categoryName) {
+    public OnlinePhotosLoader(Context context, String countryName, String categoryName) {
         super(context);
-        this.mCountryName = countryName;
-        this.mCategoryName = categoryName;
+        setCountryName(countryName);
+        setCategoryName(categoryName);
     }
 
 
@@ -61,10 +52,10 @@ public class CountryAlbumLoader extends AsyncTaskLoader<Object> {
                 .encodedPath(PHOTO_API_BASE_URL)
                 .appendPath("search")
                 .encodedQuery("image_size=" + API_CROPPED_IMAGE_SIZE + "," + API_UNCROPPED_IMAGE_SIZE)
-                .appendQueryParameter("term", mCountryName)
-                .appendQueryParameter("only", mCategoryName)
+                .appendQueryParameter("term",getCountryName())
+                .appendQueryParameter("only", getCategoryName())
                 .appendQueryParameter("exclude", "Nude")
-                .appendQueryParameter("page", "" + mAlbumPageNumber)
+                .appendQueryParameter("page", "" + getAlbumPageNumber())
                 .appendQueryParameter("rpp", "" + ALBUM_PAGE_IMAGE_NUM)
                 .appendQueryParameter("sort", "created_at")
                 .appendQueryParameter("consumer_key", API_CONSUMER_KEY)
@@ -88,17 +79,10 @@ public class CountryAlbumLoader extends AsyncTaskLoader<Object> {
     }
 
     public void forceLoad(int pageNumber) {
-        mAlbumPageNumber = pageNumber;
+         setAlbumPageNumber(pageNumber);
         super.onForceLoad();
     }
 
-    public ArrayList<Photo> getSavedPhotos() {
-        return mSavedPhotos;
-    }
-
-    public void setSavedPhotos(ArrayList<Photo> savedPhotos) {
-        this.mSavedPhotos = savedPhotos;
-    }
 
     private Photo getPhotoInstance(JSONObject jsonObject) throws JSONException {
         Photo photo = new Photo();
