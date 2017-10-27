@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements
 
     private DrawerLayout mDrawer;
     private TabLayout mAlbumCategoriesTabLayout;
-    private FrameLayout mCountriesListFragmentContainer;
 
     private String currentCountryName;
     private String currentCategoryName = DEFAULT_CATEGORY;
@@ -68,8 +67,10 @@ public class MainActivity extends AppCompatActivity implements
         setTheme(R.style.AppTheme_NoActionBar);
         setContentView(R.layout.activity_main);
 
+        // initializing the database
         dasBildDataBase = Room.databaseBuilder(this,DasBildDataBase.class,"db").build();
 
+        // setting up the toolbar
         Toolbar mToolbar = findViewById(R.id.toolbar);
         mToolbar.findViewById(R.id.toolbar_title).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements
         });
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(null);
+
+        //setting up the navigation  drawer
         mDrawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements
         mNavigationView.setNavigationItemSelectedListener(this);
         mNavigationView.setCheckedItem(R.id.arab_region);
 
+        //setting up the tabLayout
         mAlbumCategoriesTabLayout = findViewById(R.id.tab_layout);
         ArrayList<String> albumCategories = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.albums_categories)));
         for (String category : albumCategories) {
@@ -105,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements
             currentRegionName = savedInstanceState.getString(KeysUtil.REGION_NAME_KEY);
             mAlbumCategoriesTabLayout.getTabAt(albumCategories.indexOf(currentCategoryName)).select();
         }
-        mCountriesListFragmentContainer = findViewById(R.id.fragment_countries_list_container);
+
 
     }
 
@@ -118,16 +122,16 @@ public class MainActivity extends AppCompatActivity implements
             if (fm.isSlidingPanelOpen()) {
                 fm.setSlidingPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 return;
-            } else {
-                mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
             }
         } else {
             if (mDrawer.isDrawerOpen(GravityCompat.START)) {
                 mDrawer.closeDrawer(GravityCompat.START);
                 return;
             }
+
         }
         super.onBackPressed();
+        if(getSupportFragmentManager().getBackStackEntryCount() == 0) mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
 
@@ -135,12 +139,8 @@ public class MainActivity extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
         FragmentManager fm = getSupportFragmentManager();
-        if(fm.findFragmentByTag(BookmarksAlbumFragment.TAG) == null){
             if (fm.findFragmentByTag(CountriesListFragment.TAG) == null) startCountriesListFragment(DEFAULT_REGION_NAME);
             if (fm.findFragmentByTag(OnlineAlbumFragment.TAG) == null)  startAlbumFragment(DEFAULT_REGION_NAME, DEFAULT_CATEGORY);
-        }
-
-
     }
 
     @Override
@@ -297,7 +297,6 @@ public class MainActivity extends AppCompatActivity implements
             args.putString(KeysUtil.REGION_NAME_KEY, region);
             countriesListFragment.setArguments(args);
         }
-        if(mCountriesListFragmentContainer.getVisibility() == View.GONE) mCountriesListFragmentContainer.setVisibility(View.VISIBLE);
         findViewById(R.id.fragment_countries_list_container).setVisibility(View.VISIBLE);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_countries_list_container, countriesListFragment, CountriesListFragment.TAG)
@@ -307,21 +306,12 @@ public class MainActivity extends AppCompatActivity implements
     private void startBookmarkedPhotosFragment(){
         Log.d(TAG, "startBookmarkedPhotosFragment: ");
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentByTag(CountriesListFragment.TAG);
+        mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
-        fm.beginTransaction()
-                .remove(fragment)
-                .commit();
-
-
-        fm.beginTransaction()
-                .detach(fragment)
-                .commit();
-        mCountriesListFragmentContainer.setVisibility(View.GONE);
         BookmarksAlbumFragment bookmarksAlbumFragment = new BookmarksAlbumFragment();
-        fm.beginTransaction()
-                .replace(R.id.fragment_country_album_container, bookmarksAlbumFragment,bookmarksAlbumFragment.TAG)
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.drawer_layout,bookmarksAlbumFragment,bookmarksAlbumFragment.TAG)
+                .addToBackStack(null)
                 .commit();
     }
 

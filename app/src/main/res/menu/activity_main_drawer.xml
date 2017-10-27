@@ -52,6 +52,7 @@
                 <item
                     android:id="@+id/bookmarked_photos"
                     android:title="@string/photos_bookmarks_title"
+                    android:checkable="false"
                     android:icon="@drawable/ic_photo_marker"/>
             </group>
         </menu>

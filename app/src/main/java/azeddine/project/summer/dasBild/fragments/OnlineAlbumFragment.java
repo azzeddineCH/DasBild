@@ -34,7 +34,7 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
 
-        View view = super.onCreateView(inflater,container,savedInstanceState);
+        View view = super.onCreateView(inflater,container,savedInstanceState,false);
         setAlbumOnRefreshListner(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
