@@ -52,6 +52,13 @@ public abstract class PhotosGalleryFragment extends Fragment implements LoaderMa
         return view;
     }
 
+    /**
+     * a method that sets the empty list view bitmap and error message
+     * @param state if true then the empty list bitmap and message is shown to the user
+     * @param errorText the error text to display
+     * @param drawableId the drawable image to display
+     */
+
     protected void setEmptyListBitmap(boolean state, @StringRes int errorText, @DrawableRes int drawableId){
         if(state){
             mSwipeRefreshLayout.setVisibility(View.GONE);
@@ -68,7 +75,7 @@ public abstract class PhotosGalleryFragment extends Fragment implements LoaderMa
         mAlbumRecyclerView.smoothScrollToPosition(0);
     }
 
-    public void setAlbumOnRefreshListner(SwipeRefreshLayout.OnRefreshListener refreshListener, @ColorRes int circleColor){
+    public void setAlbumOnRefreshListener(SwipeRefreshLayout.OnRefreshListener refreshListener, @ColorRes int circleColor){
         mSwipeRefreshLayout.setOnRefreshListener(refreshListener);
         mSwipeRefreshLayout.setColorSchemeResources(circleColor);
 
@@ -87,20 +94,11 @@ public abstract class PhotosGalleryFragment extends Fragment implements LoaderMa
         switch (id) {
             case KeysUtil.ONLINE_PHOTOS_LOADER_ID:
                 return new OnlinePhotosLoader(getContext(),mAlbumName,mCategoryName);
-            case KeysUtil.BOOKMARKED_COUNTRY_DETAILS_LOADER_ID:
+            case KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID:
                 return new BookmarkedPhotosLoader(getContext());
             default:
                 return null;
         }
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Object> loader,Object album ) {
-        }
-
-    @Override
-    public void onLoaderReset(Loader<Object> loader) {
-
     }
 
 

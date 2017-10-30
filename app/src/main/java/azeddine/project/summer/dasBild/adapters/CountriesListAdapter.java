@@ -137,14 +137,16 @@ public class CountriesListAdapter extends RecyclerView.Adapter<RecyclerView.View
         int position;
         setRecyclerViewLoadingState(false);
         if (countriesList != null) {
-            if (focusedCountryName != null)
-                position = countriesList.indexOf(new Country(focusedCountryName));
-            else
-                position = 0;
-            mCountries.clear();
-            mCountries.addAll(countriesList);
-            mFocusedCountry = countriesList.get(position);
-            notifyDataSetChanged();
+            if(!countriesList.isEmpty()){
+                if (focusedCountryName != null)
+                    position = countriesList.indexOf(new Country(focusedCountryName));
+                else
+                    position = 0;
+                mCountries.clear();
+                mCountries.addAll(countriesList);
+                mFocusedCountry = countriesList.get(position);
+                notifyDataSetChanged();
+            }
         }
     }
 

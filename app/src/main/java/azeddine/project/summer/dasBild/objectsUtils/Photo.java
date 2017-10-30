@@ -1,7 +1,6 @@
 package azeddine.project.summer.dasBild.objectsUtils;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -31,17 +30,21 @@ public class Photo implements Serializable{
 
     }
 
-    public Photo(String ID, String url) {
-        this.id = ID;
+
+    public Photo(String id, String url) {
+        this.id = id;
         this.croppedPhotoUrl = url;
     }
 
-    public Photo(String ID, String description, String url) {
-        this.id = ID;
+    public Photo(String id, String description, String url) {
+        this.id = id;
         this.description = description;
         this.croppedPhotoUrl = url;
     }
 
+
+
+    @NonNull
     public String getId() {
         return id;
     }

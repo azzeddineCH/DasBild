@@ -18,7 +18,7 @@ public class KeysUtil {
     public static final int COUNTRIES_LIST_LOADER_ID = 0;
     public static final int ONLINE_PHOTOS_LOADER_ID = 1;
     public static final int COUNTRY_DETAILS_LOADER_ID = 2;
-    public static final int BOOKMARKED_COUNTRY_DETAILS_LOADER_ID = 3;
+    public static final int BOOKMARKED_COUNTRIES_LOADER_ID = 3;
     public static final int BOOKMARKED_PHOTOS_LOADER_ID = 4;
 
     public static final String BOOKMARK_KEY = "BOOKMARK_KEY";

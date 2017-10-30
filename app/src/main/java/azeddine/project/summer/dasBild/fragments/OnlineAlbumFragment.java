@@ -35,7 +35,7 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
         Log.d(TAG, "onCreateView: ");
 
         View view = super.onCreateView(inflater,container,savedInstanceState,false);
-        setAlbumOnRefreshListner(new SwipeRefreshLayout.OnRefreshListener() {
+        setAlbumOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 if(!mCountryAlbumAdapter.isLoading())  ((OnlinePhotosLoader) getLoaderManager().getLoader(KeysUtil.ONLINE_PHOTOS_LOADER_ID)).forceLoad(1);
@@ -113,7 +113,6 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
 
     @Override
     public void onLoadFinished(Loader<Object> loader, Object album) {
-        super.onLoadFinished(loader, album);
         if (loader.getId() == KeysUtil.ONLINE_PHOTOS_LOADER_ID){
 
             if(((List<Photo>)album).isEmpty()){
@@ -142,5 +141,10 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
 
             }
         }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Object> loader) {
+
     }
 }

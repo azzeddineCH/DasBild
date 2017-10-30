@@ -2,7 +2,6 @@ package azeddine.project.summer.dasBild.loaders;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.v4.content.AsyncTaskLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -86,7 +85,7 @@ public class OnlinePhotosLoader extends PhotosLoader {
 
     private Photo getPhotoInstance(JSONObject jsonObject) throws JSONException {
         Photo photo = new Photo();
-        photo.setId(jsonObject.getString("id"));
+        photo.setId((jsonObject.getString("id")));
         photo.setCroppedPhotoUrl(jsonObject.getJSONArray("images").getJSONObject(0).getString("url"));
         photo.setUnCroppedPhotoUrl(jsonObject.getJSONArray("images").getJSONObject(1).getString("url"));
         photo.setDescription(jsonObject.getString("description"));

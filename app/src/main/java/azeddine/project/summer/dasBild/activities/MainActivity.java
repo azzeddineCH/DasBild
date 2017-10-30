@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -20,7 +21,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         // initializing the database
-        dasBildDataBase = Room.databaseBuilder(this,DasBildDataBase.class,"db").build();
+        dasBildDataBase = Room.databaseBuilder(this,DasBildDataBase.class,"db").allowMainThreadQueries()
+                .build();
 
         // setting up the toolbar
         Toolbar mToolbar = findViewById(R.id.toolbar);
@@ -230,7 +231,11 @@ public class MainActivity extends AppCompatActivity implements
             switch (id){
                 case R.id.bookmarked_countries_regions:
                     currentRegionName = null;
-                    startCountriesListFragment(currentRegionName);
+                    startCountriesListFragment(null);
+                    Country country = dasBildDataBase.countryRoomDAO().selectLatestBookmarkedCountry();
+                    String bookmarkedCountryName = (country != null) ? country.getName() : null;
+                    Log.d(TAG, "onNavigationItemSelected: the name of the last country is"+bookmarkedCountryName);
+                    startAlbumFragment(bookmarkedCountryName,currentCategoryName);
                     break;
                 case R.id.bookmarked_photos:
                     currentRegionName = null;
@@ -311,6 +316,7 @@ public class MainActivity extends AppCompatActivity implements
         BookmarksAlbumFragment bookmarksAlbumFragment = new BookmarksAlbumFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.drawer_layout,bookmarksAlbumFragment,bookmarksAlbumFragment.TAG)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();
     }

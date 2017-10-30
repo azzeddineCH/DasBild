@@ -15,6 +15,8 @@ import android.support.annotation.Nullable;
 @Entity(tableName = "countries",indices = {@Index(value = "name",unique = true)})
 public class Country extends BookmarkedItem{
 
+
+
     @PrimaryKey
     @NonNull
     private String name;

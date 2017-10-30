@@ -9,6 +9,7 @@
     <string name="no_photos">No photos available</string>
     <string name="no_signal">No network signal</string>
     <string name="no_details">No information available</string>
+    <string name="no_bookmarked_photos">No bookmarked image found</string>
     <string name="google_maps_intent_text">show in map</string>
     <string name="google_maps_intent_error">Can not show in map</string>
 

@@ -2,11 +2,9 @@ package azeddine.project.summer.dasBild.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +15,6 @@ import java.util.List;
 
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.adapters.CountryAlbumAdapter;
-import azeddine.project.summer.dasBild.objectsUtils.BookmarkedItem;
 import azeddine.project.summer.dasBild.objectsUtils.KeysUtil;
 import azeddine.project.summer.dasBild.objectsUtils.Photo;
 
@@ -62,14 +59,14 @@ public class BookmarksAlbumFragment extends PhotosGalleryFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getLoaderManager().initLoader(KeysUtil.BOOKMARKED_COUNTRY_DETAILS_LOADER_ID, null, this);
+        getLoaderManager().initLoader(KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID, null, this);
     }
 
     @Override
     public void onLoadFinished(Loader<Object> loader, Object album) {
-        super.onLoadFinished(loader, album);
-        if (loader.getId() == KeysUtil.BOOKMARKED_COUNTRY_DETAILS_LOADER_ID) {
+        if (loader.getId() == KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID) {
             if (((List<Photo>) album).isEmpty()) {
+                setEmptyListBitmap(true,R.string.no_bookmarked_photos,R.drawable.no_photo);
 
             } else {
                 Log.d(TAG, "onLoadFinished: " + ((List<Photo>) album).size());
@@ -82,5 +79,10 @@ public class BookmarksAlbumFragment extends PhotosGalleryFragment {
                 });
             }
         }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Object> loader) {
+
     }
 }

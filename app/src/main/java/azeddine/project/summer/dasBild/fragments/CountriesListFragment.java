@@ -1,6 +1,5 @@
 package azeddine.project.summer.dasBild.fragments;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 
 import azeddine.project.summer.dasBild.R;
@@ -24,6 +21,7 @@ import azeddine.project.summer.dasBild.loaders.BookmarkedCountriesLoader;
 import azeddine.project.summer.dasBild.loaders.CountriesListLoader;
 import azeddine.project.summer.dasBild.objectsUtils.Country;
 import azeddine.project.summer.dasBild.objectsUtils.KeysUtil;
+import azeddine.project.summer.dasBild.objectsUtils.Photo;
 
 /**
  * Created by azeddine on 28/07/17.
@@ -80,7 +78,7 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
             Log.d(TAG, "onActivityCreated: loading args");
             getLoaderManager().initLoader(KeysUtil.COUNTRIES_LIST_LOADER_ID,args,this);
         }else {
-            getLoaderManager().initLoader(KeysUtil.BOOKMARKED_COUNTRY_DETAILS_LOADER_ID,null,this);
+            getLoaderManager().initLoader(KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID,null,this);
         }
 
     }
@@ -98,7 +96,7 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
         switch (id){
             case KeysUtil.COUNTRIES_LIST_LOADER_ID:
                 return new CountriesListLoader(getContext(),args.getString(KeysUtil.REGION_NAME_KEY));
-            case KeysUtil.BOOKMARKED_COUNTRY_DETAILS_LOADER_ID:
+            case KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID:
                 Log.d(TAG, "onCreateLoader: searching in the database");
                 return new BookmarkedCountriesLoader(getContext());
             default:
@@ -127,5 +125,9 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
 
     public void setFocusedCountryName(String mFocusedCountryName) {
         this.mFocusedCountryName = mFocusedCountryName;
+    }
+
+    public void setRegionCountriesList(List<Country> countries){
+        mCountriesListAdapter.setCountriesList(countries,mFocusedCountryName);
     }
 }
