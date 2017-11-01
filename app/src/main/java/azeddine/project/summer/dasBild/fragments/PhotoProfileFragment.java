@@ -158,7 +158,6 @@ public class PhotoProfileFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mPhoto = (Photo) getArguments().getSerializable("Photo");
         if (mPhoto != null) {
-
             Glide.with(this)
                     .load(mPhoto.getUnCroppedPhotoUrl())
                     .apply(new RequestOptions().error(R.drawable.ic_terrain_))

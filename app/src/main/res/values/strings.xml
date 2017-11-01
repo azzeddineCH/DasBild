@@ -5,9 +5,9 @@
     <!-- messages to display -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="could_not_refresh_text">Could not refresh,no Internet</string>
+    <string name="could_not_refresh_text">Couldn\'t refresh,no Internet</string>
     <string name="no_photos">No photos available</string>
-    <string name="no_signal">No network signal</string>
+    <string name="no_signal">No internet available</string>
     <string name="no_details">No information available</string>
     <string name="no_bookmarked_photos">No bookmarked image found</string>
     <string name="google_maps_intent_text">show in map</string>
@@ -26,6 +26,7 @@
     <string name="bookmarks_title">bookmarks</string>
     <string name="regions_bookmarks_title">Regions and countries</string>
     <string name="photos_bookmarks_title">Photos</string>
+    <string name="bookmarked_photos_fragment_title">Bookmarked photos</string>
 
     <!-- region keys used in the RestCountries Api call -->
     <string-array name="regions_keys">

@@ -145,10 +145,9 @@ public class CountryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
     public void addPhotosToTop(List<Photo> photosList) {
         if (photosList != null) {
-            int segment = photos.size();
-           for(int i=segment-1;i>=0;i--){
-               if(!photosList.contains( photos.get(i))) photos.add(0,photos.get(i));
-           }
+            for (Photo photo:photosList) {
+                if(!photos.contains(photo)) photos.add(0,photo);
+            }
         }
 
     }

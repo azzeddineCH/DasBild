@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
@@ -54,21 +55,23 @@ public abstract class PhotosGalleryFragment extends Fragment implements LoaderMa
 
     /**
      * a method that sets the empty list view bitmap and error message
-     * @param state if true then the empty list bitmap and message is shown to the user
      * @param errorText the error text to display
      * @param drawableId the drawable image to display
      */
 
-    protected void setEmptyListBitmap(boolean state, @StringRes int errorText, @DrawableRes int drawableId){
-        if(state){
-            mSwipeRefreshLayout.setVisibility(View.GONE);
+    protected void showEmptyListBitmap(@StringRes int errorText, @DrawableRes int drawableId){
+            mAlbumRecyclerView.setVisibility(View.GONE);
             mErrorDisplayLayout.setVisibility(View.VISIBLE);
             mErrorImageView.setImageResource(drawableId);
             mErrorText.setText(errorText);
-        }else{
-            mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideEmptyListBitmap(){
+            mAlbumRecyclerView.setVisibility(View.VISIBLE);
             mErrorDisplayLayout.setVisibility(View.GONE);
-        }
+    }
+    protected boolean isEmptyListViewVisible(){
+        return mAlbumRecyclerView.getVisibility() == View.GONE;
     }
 
     public void resetAlbumScroll(){
@@ -92,9 +95,11 @@ public abstract class PhotosGalleryFragment extends Fragment implements LoaderMa
     public Loader<Object> onCreateLoader(int id, Bundle args) {
         Log.d(TAG, "onCreateLoader: ");
         switch (id) {
-            case KeysUtil.ONLINE_PHOTOS_LOADER_ID:
+            case KeysUtil.ONLINE_MORE_PHOTOS_LOADER_ID:
                 return new OnlinePhotosLoader(getContext(),mAlbumName,mCategoryName);
-            case KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID:
+            case  KeysUtil.ONLINE_RECENT_PHOTOS_LOADER_ID:
+                return new OnlinePhotosLoader(getContext(),mAlbumName,mCategoryName);
+            case KeysUtil.BOOKMARKED_PHOTOS_LOADER_ID:
                 return new BookmarkedPhotosLoader(getContext());
             default:
                 return null;

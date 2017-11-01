@@ -6,7 +6,6 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +38,7 @@ public class BookmarksAlbumFragment extends PhotosGalleryFragment {
         final ActionBar actionBar = activity.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Bookmarked Photos");
+            actionBar.setTitle(R.string.bookmarked_photos_fragment_title);
         }
         try {
             mCountryAlbumAdapter = initAlbumAdapter(getContext(), 3);
@@ -59,17 +58,17 @@ public class BookmarksAlbumFragment extends PhotosGalleryFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getLoaderManager().initLoader(KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID, null, this);
+        mCountryAlbumAdapter.setAdapterLoadingState(true);
+        getLoaderManager().initLoader(KeysUtil.BOOKMARKED_PHOTOS_LOADER_ID, null, this);
     }
 
     @Override
     public void onLoadFinished(Loader<Object> loader, Object album) {
-        if (loader.getId() == KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID) {
+        if (loader.getId() == KeysUtil.BOOKMARKED_PHOTOS_LOADER_ID) {
+            mCountryAlbumAdapter.setAdapterLoadingState(false);
             if (((List<Photo>) album).isEmpty()) {
-                setEmptyListBitmap(true,R.string.no_bookmarked_photos,R.drawable.no_photo);
-
+                showEmptyListBitmap(R.string.no_bookmarked_photos,R.drawable.no_photo);
             } else {
-                Log.d(TAG, "onLoadFinished: " + ((List<Photo>) album).size());
                 mCountryAlbumAdapter.addPhotosToBottom(((List<Photo>) album));
                 mAlbumRecyclerView.post(new Runnable() {
                     @Override

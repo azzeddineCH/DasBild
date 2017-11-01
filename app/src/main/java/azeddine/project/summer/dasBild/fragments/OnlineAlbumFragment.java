@@ -38,7 +38,16 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
         setAlbumOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if(!mCountryAlbumAdapter.isLoading())  ((OnlinePhotosLoader) getLoaderManager().getLoader(KeysUtil.ONLINE_PHOTOS_LOADER_ID)).forceLoad(1);
+                if(mCountryAlbumAdapter.isLoading()){
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+                else{
+                    OnlinePhotosLoader loader =  (OnlinePhotosLoader)  getLoaderManager().getLoader(KeysUtil.ONLINE_RECENT_PHOTOS_LOADER_ID);
+                    if(loader == null )
+                        getLoaderManager().initLoader(KeysUtil.ONLINE_RECENT_PHOTOS_LOADER_ID,null,OnlineAlbumFragment.this);
+                    else
+                        loader.forceLoad();
+                }
             }
         },R.color.colorAccent);
         try {
@@ -53,7 +62,7 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
             public void onLoadMore() {
                 if (ApiUtils.isOnline(getContext())) {
                     mCurrentAlbumPage++;
-                    ((OnlinePhotosLoader) getLoaderManager().getLoader(KeysUtil.ONLINE_PHOTOS_LOADER_ID)).forceLoad(mCurrentAlbumPage);
+                    ((OnlinePhotosLoader) getLoaderManager().getLoader(KeysUtil.ONLINE_MORE_PHOTOS_LOADER_ID)).forceLoad(mCurrentAlbumPage);
                 } else {
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -76,9 +85,9 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState != null) {
             mCurrentAlbumPage = savedInstanceState.getInt(KeysUtil.ALBUM_PAGE_NUMBER_KEY);
-            OnlinePhotosLoader loader = ((OnlinePhotosLoader) getLoaderManager().getLoader(KeysUtil.ONLINE_PHOTOS_LOADER_ID));
+            OnlinePhotosLoader loader = ((OnlinePhotosLoader) getLoaderManager().getLoader(KeysUtil.ONLINE_MORE_PHOTOS_LOADER_ID));
             if(loader != null){
-                mCountryAlbumAdapter.addPhotosToBottom(((OnlinePhotosLoader) getLoaderManager().getLoader(KeysUtil.ONLINE_PHOTOS_LOADER_ID)).getSavedPhotos());
+                mCountryAlbumAdapter.addPhotosToBottom(loader.getSavedPhotos());
                 mAlbumRecyclerView.post(new Runnable() {
                     @Override
                     public void run() {
@@ -98,7 +107,7 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
         mCategoryName = getArguments().getString(KeysUtil.CATEGORY_NAME_KEY);
         mCountryAlbumAdapter.setAdapterLoadingState(true);
 
-        getLoaderManager().initLoader(KeysUtil.ONLINE_PHOTOS_LOADER_ID, null, OnlineAlbumFragment.this);
+        getLoaderManager().initLoader(KeysUtil.ONLINE_MORE_PHOTOS_LOADER_ID, null, OnlineAlbumFragment.this);
     }
 
 
@@ -106,40 +115,54 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(KeysUtil.ALBUM_PAGE_NUMBER_KEY, mCurrentAlbumPage);
-        if(!mCountryAlbumAdapter.getPhotos().isEmpty()){
-              if(!mCountryAlbumAdapter.isLoading()) ((OnlinePhotosLoader) getLoaderManager().getLoader(KeysUtil.ONLINE_PHOTOS_LOADER_ID)).setSavedPhotos(mCountryAlbumAdapter.getPhotos());
+        if(mCountryAlbumAdapter.isLoading()) mCountryAlbumAdapter.setAdapterLoadingState(false);
+        ((OnlinePhotosLoader) getLoaderManager().getLoader(KeysUtil.ONLINE_MORE_PHOTOS_LOADER_ID)).setSavedPhotos(mCountryAlbumAdapter.getPhotos());
         }
-    }
 
     @Override
     public void onLoadFinished(Loader<Object> loader, Object album) {
-        if (loader.getId() == KeysUtil.ONLINE_PHOTOS_LOADER_ID){
+        int id = loader.getId();
+        List<Photo> photos = (List<Photo>) album;
 
-            if(((List<Photo>)album).isEmpty()){
-                if(mCountryAlbumAdapter.isLoading())  mCountryAlbumAdapter.setAdapterLoadingState(false); else mSwipeRefreshLayout.setRefreshing(false);
-                if(mCountryAlbumAdapter.getPhotos().isEmpty()){
-                    if(ApiUtils.isOnline(getContext())) setEmptyListBitmap(true,R.string.no_photos,R.drawable.no_photo);else setEmptyListBitmap(true,R.string.no_signal,R.drawable.no_signal);
-                }else{
-                    Toast.makeText(getContext(), R.string.no_photos, Toast.LENGTH_SHORT).show();
-                }
-            }else{
-                if (mCountryAlbumAdapter.isLoading()) {
-                    Log.d(TAG, "onLoadFinished: load more end");
-                    mCountryAlbumAdapter.setAdapterLoadingState(false);
-                    mCountryAlbumAdapter.addPhotosToBottom((List<Photo>)album);
-                }else{
-                    mSwipeRefreshLayout.setRefreshing(false);
-                    mCountryAlbumAdapter.addPhotosToTop((List<Photo>)album);
-                }
-
-                mAlbumRecyclerView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mCountryAlbumAdapter.notifyPhotosUpdates();
+        switch (id){
+            case KeysUtil.ONLINE_MORE_PHOTOS_LOADER_ID:
+    
+                mCountryAlbumAdapter.setAdapterLoadingState(false);
+                if(photos.isEmpty()){
+                    if(mCountryAlbumAdapter.getPhotos().isEmpty()){
+                        if(ApiUtils.isOnline(getContext()))
+                            showEmptyListBitmap(R.string.no_photos,R.drawable.no_photo);
+                        else
+                            showEmptyListBitmap(R.string.no_signal,R.drawable.no_signal);
+                    }else {
+                        Toast.makeText(getContext(), R.string.no_photos, Toast.LENGTH_SHORT).show();
                     }
-                });
+                }else {
+                    mCountryAlbumAdapter.addPhotosToBottom(photos);
+                    mAlbumRecyclerView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mCountryAlbumAdapter.notifyPhotosUpdates();
+                        }
+                    });
+                }
+                break;
 
-            }
+            case KeysUtil.ONLINE_RECENT_PHOTOS_LOADER_ID:
+                mSwipeRefreshLayout.setRefreshing(false);
+                if(photos.isEmpty()){
+                    Toast.makeText(getContext(), R.string.could_not_refresh_text, Toast.LENGTH_SHORT).show();
+                }else {
+                    if(isEmptyListViewVisible()) hideEmptyListBitmap();
+                    mCountryAlbumAdapter.addPhotosToTop(photos);
+                    mAlbumRecyclerView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mCountryAlbumAdapter.notifyPhotosUpdates();
+                        }
+                    });
+                }
+                break;
         }
     }
 

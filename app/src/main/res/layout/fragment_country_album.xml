@@ -8,13 +8,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/darker_white">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/country_album"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/country_album"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <include
+                android:id="@+id/error_frame"
+                android:visibility="gone"
+                layout="@layout/errors_frame"/>
+        </FrameLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
-    <include
-        android:id="@+id/error_frame"
-        android:visibility="gone"
-        layout="@layout/errors_frame"/>
 </FrameLayout>

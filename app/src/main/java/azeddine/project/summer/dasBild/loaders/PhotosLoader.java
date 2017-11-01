@@ -20,6 +20,9 @@ public abstract class PhotosLoader extends AsyncTaskLoader<Object> {
     public static final int DEFAULT_ALBUM_PAGE = 1;
 
     private String mCountryName;
+    private String mCategoryName;
+    private int mAlbumPageNumber = DEFAULT_ALBUM_PAGE;
+    private List<Photo> mSavedPhotos;
 
     public String getCountryName() {
         return mCountryName;
@@ -46,13 +49,11 @@ public abstract class PhotosLoader extends AsyncTaskLoader<Object> {
     }
 
 
-    private String mCategoryName;
-    private int mAlbumPageNumber = DEFAULT_ALBUM_PAGE;
-    private List<Photo> mSavedPhotos;
-
     public PhotosLoader(Context context) {
         super(context);
     }
+
+
 
     @Override
     protected void onStartLoading() {

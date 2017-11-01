@@ -13,7 +13,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,13 +60,12 @@ public class CountryDetailsDialogFragment extends DialogFragment implements Load
 
         mCountryFlagImageView = mDialogView.findViewById(R.id.country_flag_imageView);
         mCountryNameTextView = mDialogView.findViewById(R.id.country_name_title);
-
         mCountryDetailsTextView = mDialogView.findViewById(R.id.country_detail_text);
         mProgressBar = mDialogView.findViewById(R.id.load_small_progress_bar);
         mScrollView = mDialogView.findViewById(R.id.scrollView);
         mBookmarkIconButton = mDialogView.findViewById(R.id.bookmark_button);
 
-        final CountryDataBaseUpdate countryDataBaseUpdate = new CountryDataBaseUpdate();
+        final OnBookmarkButtonClickedTask onBookmarkButtonClickedTask = new OnBookmarkButtonClickedTask();
 
         mBookmarkIconButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,11 +77,11 @@ public class CountryDetailsDialogFragment extends DialogFragment implements Load
                     mBookmarkIconButton.setImageResource(R.drawable.ic_bookmark);
                     mCountry.setBookmarked(true);
                 }
-
-                countryDataBaseUpdate.execute(mCountry);
+                onBookmarkButtonClickedTask.execute(mCountry);
 
             }
         });
+
         mDialogView.findViewById(R.id.show_in_map).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,10 +95,7 @@ public class CountryDetailsDialogFragment extends DialogFragment implements Load
         });
 
         mCountryName = getArguments().getString(KeysUtil.COUNTRY_NAME_KEY);
-        new CountryDataBaseSelection().execute(mCountryName);
-
-
-
+        new CountrySelectionTask().execute(mCountryName);
 
         builder.setView(mDialogView)
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -154,16 +149,14 @@ public class CountryDetailsDialogFragment extends DialogFragment implements Load
                 mCountryDetailsTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             }else{
                 mCountryDetailsTextView.setText(data);
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-
-                    Animation enterAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_up_fade_in);
-                    enterAnimation.setDuration(350);
-                    enterAnimation.setInterpolator(AnimationUtils.loadInterpolator(
+                Animation enterAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_up_fade_in);
+                enterAnimation.setDuration(350);
+                enterAnimation.setInterpolator(AnimationUtils.loadInterpolator(
                             getContext(),
                             android.R.interpolator.linear
                     ));
-                    mCountryDetailsTextView.startAnimation(enterAnimation);
-                }
+                mCountryDetailsTextView.startAnimation(enterAnimation);
+
             }
         }
 
@@ -174,7 +167,7 @@ public class CountryDetailsDialogFragment extends DialogFragment implements Load
 
     }
 
-    private class CountryDataBaseUpdate extends AsyncTask<Country, Void, Void> {
+    private class OnBookmarkButtonClickedTask extends AsyncTask<Country, Void, Void> {
 
         @Override
         protected Void doInBackground(Country... countries) {
@@ -182,7 +175,7 @@ public class CountryDetailsDialogFragment extends DialogFragment implements Load
             return null;
         }
     }
-    private class CountryDataBaseSelection extends AsyncTask<String, Void,Country> {
+    private class CountrySelectionTask extends AsyncTask<String, Void,Country> {
 
 
         @Override

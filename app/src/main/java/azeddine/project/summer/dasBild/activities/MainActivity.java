@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -44,8 +45,11 @@ import azeddine.project.summer.dasBild.objectsUtils.KeysUtil;
 import azeddine.project.summer.dasBild.objectsUtils.Photo;
 
 public class MainActivity extends AppCompatActivity implements
-        CountriesListAdapter.OnCountryItemClickedListener, CountriesListAdapter.OnCountryItemLongClickedListener,
-        CountryAlbumAdapter.OnPhotoClickedListener, NavigationView.OnNavigationItemSelectedListener, TabLayout.OnTabSelectedListener {
+                                                    CountriesListAdapter.OnCountryItemClickedListener,
+                                                    CountriesListAdapter.OnCountryItemLongClickedListener,
+                                                    CountryAlbumAdapter.OnPhotoClickedListener,
+                                                    NavigationView.OnNavigationItemSelectedListener,
+                                                    TabLayout.OnTabSelectedListener {
 
     private static final String TAG = "MainActivity";
     public static final String DEFAULT_REGION_NAME = "Arab world";
@@ -110,6 +114,10 @@ public class MainActivity extends AppCompatActivity implements
             currentRegionName = savedInstanceState.getString(KeysUtil.REGION_NAME_KEY);
             mAlbumCategoriesTabLayout.getTabAt(albumCategories.indexOf(currentCategoryName)).select();
         }
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        //intentFilter.addAction("android.net.wifi.WIFI_STATE_CHANGED");
+        registerReceiver(new NetworkStateBroadcastReceiver(), intentFilter);
 
 
     }
@@ -119,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements
         Log.d(TAG, "onBackPressed: ");
 
         PhotoProfileFragment fm = (PhotoProfileFragment) getSupportFragmentManager().findFragmentByTag(PhotoProfileFragment.TAG);
+
+        //checking if the slide panel of the photo fragment is opened
         if (fm != null) {
             if (fm.isSlidingPanelOpen()) {
                 fm.setSlidingPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
@@ -228,17 +238,14 @@ public class MainActivity extends AppCompatActivity implements
                 startAlbumFragment(selectedRegionTitle, currentCategoryName);
             }
         }else if(groupId == R.id.bookmarks){
+            currentCountryName = currentRegionName = null;
             switch (id){
                 case R.id.bookmarked_countries_regions:
-                    currentRegionName = null;
                     startCountriesListFragment(null);
                     Country country = dasBildDataBase.countryRoomDAO().selectLatestBookmarkedCountry();
-                    String bookmarkedCountryName = (country != null) ? country.getName() : null;
-                    Log.d(TAG, "onNavigationItemSelected: the name of the last country is"+bookmarkedCountryName);
-                    startAlbumFragment(bookmarkedCountryName,currentCategoryName);
+                    startAlbumFragment((currentCountryName  = (country != null) ? country.getName() : null),currentCategoryName);
                     break;
                 case R.id.bookmarked_photos:
-                    currentRegionName = null;
                     startBookmarkedPhotosFragment();
                     break;
                 default:
@@ -251,11 +258,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        Log.d(TAG, "onTabSelected: ");
         currentCategoryName = tab.getText().toString();
         if (getSupportFragmentManager().findFragmentByTag(OnlineAlbumFragment.TAG) != null){
                  startAlbumFragment(currentCountryName, currentCategoryName);
-            Log.d(TAG, "onTabSelected: this is me");
         }
 
     }
@@ -279,8 +284,12 @@ public class MainActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * start the Album fragment getting the selected country and album category
+     * @param name the selected country name
+     * @param category the category name
+     */
     private void startAlbumFragment(String name, String category) {
-        Log.d(TAG, "startAlbumFragment: ");
 
         Bundle args = new Bundle();
         args.putString(KeysUtil.ALBUM_NAME_KEY, name);
@@ -294,33 +303,41 @@ public class MainActivity extends AppCompatActivity implements
                 .commit();
     }
 
+    /**
+     * start the country list fragment getting the name of the selected region
+     * @param region the slected region
+     */
     private void startCountriesListFragment(String region) {
-        Log.d(TAG, "startCountriesListFragment: ");
         CountriesListFragment countriesListFragment = new CountriesListFragment();
         if(region != null){
             Bundle args = new Bundle();
             args.putString(KeysUtil.REGION_NAME_KEY, region);
             countriesListFragment.setArguments(args);
         }
-        findViewById(R.id.fragment_countries_list_container).setVisibility(View.VISIBLE);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_countries_list_container, countriesListFragment, CountriesListFragment.TAG)
                 .commit();
     }
 
-    private void startBookmarkedPhotosFragment(){
-        Log.d(TAG, "startBookmarkedPhotosFragment: ");
 
+    /**
+     * start the bookmarked photos fragment
+     */
+    private void startBookmarkedPhotosFragment(){
         mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         BookmarksAlbumFragment bookmarksAlbumFragment = new BookmarksAlbumFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.drawer_layout,bookmarksAlbumFragment,bookmarksAlbumFragment.TAG)
+                .replace(R.id.drawer_layout,bookmarksAlbumFragment,BookmarksAlbumFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();
     }
 
+    /**
+     * a method that detect the layout orientation then return the type of scroll the countries list should get
+     * @return 1 if landscape else 0
+     */
     public int getCountriesListScrollOrientation() {
         return findViewById(R.id.app_bar_layout).findViewById(R.id.fragment_countries_list_container) == null ? 1 :0;
 
@@ -334,9 +351,7 @@ public class MainActivity extends AppCompatActivity implements
         }
         @Override
         public void onReceive(Context context, Intent intent) {
-           boolean connectionState = ApiUtils.isOnline(context);
-           if(connectionState)  Toast.makeText(context, "Swipe to refresh", Toast.LENGTH_SHORT).show();
-
+           if(!ApiUtils.isOnline(context)) Toast.makeText(context,R.string.no_signal, Toast.LENGTH_SHORT).show();
         }
 
     }

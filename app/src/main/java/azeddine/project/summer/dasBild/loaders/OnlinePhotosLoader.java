@@ -2,6 +2,7 @@ package azeddine.project.summer.dasBild.loaders;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,39 +47,40 @@ public class OnlinePhotosLoader extends PhotosLoader {
         String responseBodyString;
         JSONArray photosJsonArray;
         ArrayList<Photo> photoArrayList = new ArrayList<>();
+        if(getCountryName()!= null){
+            Uri url = new Uri.Builder()
+                    .encodedPath(PHOTO_API_BASE_URL)
+                    .appendPath("search")
+                    .encodedQuery("image_size=" + API_CROPPED_IMAGE_SIZE + "," + API_UNCROPPED_IMAGE_SIZE)
+                    .appendQueryParameter("term",getCountryName())
+                    .appendQueryParameter("only", getCategoryName())
+                    .appendQueryParameter("exclude", "Nude")
+                    .appendQueryParameter("page", "" + getAlbumPageNumber())
+                    .appendQueryParameter("rpp", "" + ALBUM_PAGE_IMAGE_NUM)
+                    .appendQueryParameter("sort", "created_at")
+                    .appendQueryParameter("consumer_key", API_CONSUMER_KEY)
+                    .build();
 
-        Uri url = new Uri.Builder()
-                .encodedPath(PHOTO_API_BASE_URL)
-                .appendPath("search")
-                .encodedQuery("image_size=" + API_CROPPED_IMAGE_SIZE + "," + API_UNCROPPED_IMAGE_SIZE)
-                .appendQueryParameter("term",getCountryName())
-                .appendQueryParameter("only", getCategoryName())
-                .appendQueryParameter("exclude", "Nude")
-                .appendQueryParameter("page", "" + getAlbumPageNumber())
-                .appendQueryParameter("rpp", "" + ALBUM_PAGE_IMAGE_NUM)
-                .appendQueryParameter("sort", "created_at")
-                .appendQueryParameter("consumer_key", API_CONSUMER_KEY)
-                .build();
+            try {
+                responseBodyString = ApiUtils.run(url);
+                JSONObject jsonObject = new JSONObject(responseBodyString);
+                photosJsonArray = jsonObject.getJSONArray("photos");
 
-        try {
-            responseBodyString = ApiUtils.run(url);
-            JSONObject jsonObject = new JSONObject(responseBodyString);
-            photosJsonArray = jsonObject.getJSONArray("photos");
+                for (int i = 0; i < photosJsonArray.length(); i++) {
+                    photoArrayList.add(getPhotoInstance(photosJsonArray.getJSONObject(i)));
+                }
 
-            for (int i = 0; i < photosJsonArray.length(); i++) {
-                photoArrayList.add(getPhotoInstance(photosJsonArray.getJSONObject(i)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
         return photoArrayList;
     }
 
     public void forceLoad(int pageNumber) {
-         setAlbumPageNumber(pageNumber);
+        setAlbumPageNumber(pageNumber);
         super.onForceLoad();
     }
 
