@@ -1,6 +1,25 @@
 <resources>
     <string name="app_name" translatable="false">DasBild</string>
+    <string name="app_slogan">Travel through pictures</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="app_why">
+        DasBild is an application made with Love, a love for photography and travel.
+        It takes you on a journey through the world famous regions collecting the best
+        pictures taken by a community of talented and passionate photographers.
+    </string>
+    <string name="app_quote">
+        To me, photography is an art of observation.
+        It’s about finding something interesting in an ordinary place, I’ve found it has little to do with
+        the things you see and everything to do with the way you see them
+    </string>
+    <string name="quoted_from">- Elliott Erwitt -</string>
+    <string name="founder_first_name">Azzeddine</string>
+    <string name="founder_last_name">CHENINE</string>
+    <string name="founder_job">Computer science engineering Student</string>
+    <string name="photos_by_title">Photos by</string>
+    <string name="developed_by_title">Developed by</string>
+    <string name="community_title">community</string>
+    <string name="community_name">500px</string>
 
     <!-- messages to display -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -27,6 +46,9 @@
     <string name="regions_bookmarks_title">Regions and countries</string>
     <string name="photos_bookmarks_title">Photos</string>
     <string name="bookmarked_photos_fragment_title">Bookmarked photos</string>
+    <string name="more_section_label">More</string>
+    <string name="about_section">About DasBild</string>
+    <string name="contact_section">Contact us</string>
 
     <!-- region keys used in the RestCountries Api call -->
     <string-array name="regions_keys">
@@ -56,9 +78,9 @@
         <item >Night</item>
         <item>Street</item>
         <item>Travel</item>
-        <item>Still Life</item>
-        <item >Fine Art</item>
+        <item>Transportation</item>
         <item>Black and White</item>
+        <item >Fine Art</item>
         <item >Food</item>
     </string-array>
 

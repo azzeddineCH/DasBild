@@ -35,6 +35,7 @@ import azeddine.project.summer.dasBild.DasBildDataBase;
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.adapters.CountriesListAdapter;
 import azeddine.project.summer.dasBild.adapters.CountryAlbumAdapter;
+import azeddine.project.summer.dasBild.fragments.AboutUsFragment;
 import azeddine.project.summer.dasBild.fragments.BookmarksAlbumFragment;
 import azeddine.project.summer.dasBild.fragments.CountriesListFragment;
 import azeddine.project.summer.dasBild.fragments.OnlineAlbumFragment;
@@ -249,6 +250,19 @@ public class MainActivity extends AppCompatActivity implements
                     startBookmarkedPhotosFragment();
                     break;
                 default:
+                    break;
+            }
+        }else if (groupId == R.id.more_info){
+            switch (id){
+                case R.id.about_the_app:
+                    mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.drawer_layout,new AboutUsFragment())
+                            .addToBackStack(null)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit();
+                    break;
+                case R.id.contact_us:
                     break;
             }
         }

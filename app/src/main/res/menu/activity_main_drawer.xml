@@ -57,6 +57,24 @@
             </group>
         </menu>
     </item>
+    <item android:title="@string/more_section_label">
+        <menu>
+            <group
+                android:id="@+id/more_info"
+                android:checkableBehavior="single">
+                <item
+                    android:checkable="false"
+                    android:id="@+id/about_the_app"
+                    android:title="@string/about_section"
+                    android:icon="@drawable/ic_about"/>
+                <item
+                    android:id="@+id/contact_us"
+                    android:title="@string/contact_section"
+                    android:checkable="false"
+                    android:icon="@drawable/ic_interface"/>
+            </group>
+        </menu>
+    </item>
 
 
 </menu>
