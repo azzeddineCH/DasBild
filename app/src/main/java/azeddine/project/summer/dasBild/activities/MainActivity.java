@@ -262,8 +262,6 @@ public class MainActivity extends AppCompatActivity implements
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                             .commit();
                     break;
-                case R.id.contact_us:
-                    break;
             }
         }
         mDrawer.closeDrawer(GravityCompat.START);

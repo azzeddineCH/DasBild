@@ -48,7 +48,6 @@
     <string name="bookmarked_photos_fragment_title">Bookmarked photos</string>
     <string name="more_section_label">More</string>
     <string name="about_section">About DasBild</string>
-    <string name="contact_section">Contact us</string>
 
     <!-- region keys used in the RestCountries Api call -->
     <string-array name="regions_keys">

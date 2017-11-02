@@ -67,11 +67,6 @@
                     android:id="@+id/about_the_app"
                     android:title="@string/about_section"
                     android:icon="@drawable/ic_about"/>
-                <item
-                    android:id="@+id/contact_us"
-                    android:title="@string/contact_section"
-                    android:checkable="false"
-                    android:icon="@drawable/ic_interface"/>
             </group>
         </menu>
     </item>
