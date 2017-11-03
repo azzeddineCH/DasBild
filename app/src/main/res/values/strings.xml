@@ -12,6 +12,20 @@
         It’s about finding something interesting in an ordinary place, I’ve found it has little to do with
         the things you see and everything to do with the way you see them
     </string>
+    
+    <!-- intro page resources-->
+    <string name="travel_title">Travel throw picture</string>
+    <string name="travel_description">We take you in a journey around the World collecting the best images</string>
+
+    <string name="descover_title">Hold to know more</string>
+    <string name="descover_description">With a long press, know more about the world country</string>
+
+    <string name="save_title">Save what you love</string>
+    <string name="save_description">making it easy to Save your favourite countries and photos</string>
+
+    <string name="start_title">Get started</string>
+    <string name="start_description">Start experiencing what can a great picture tell about an place</string>
+
     <string name="quoted_from">- Elliott Erwitt -</string>
     <string name="founder_first_name">Azzeddine</string>
     <string name="founder_last_name">CHENINE</string>
@@ -42,7 +56,7 @@
     <string name="asia">Asia</string>
     <string name="north_america">North America</string>
     <string name="south_america">South America</string>
-    <string name="bookmarks_title">bookmarks</string>
+    <string name="bookmarks_title">Saved</string>
     <string name="regions_bookmarks_title">Regions and countries</string>
     <string name="photos_bookmarks_title">Photos</string>
     <string name="bookmarked_photos_fragment_title">Bookmarked photos</string>
