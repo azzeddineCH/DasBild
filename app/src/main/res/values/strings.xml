@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">DasBild</string>
-    <string name="app_slogan">Travel through pictures</string>
+    <string name="app_slogan" translatable="false">Travel Through Pictures</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="app_why">
         DasBild is an application made with Love, a love for photography and travel.
@@ -12,10 +12,10 @@
         It’s about finding something interesting in an ordinary place, I’ve found it has little to do with
         the things you see and everything to do with the way you see them
     </string>
-    
+
     <!-- intro page resources-->
-    <string name="travel_title">Travel throw picture</string>
-    <string name="travel_description">We take you in a journey around the World collecting the best images</string>
+    <string name="travel_title">Travel Through Pictures</string>
+    <string name="travel_description">taking a journey around the World collecting the best images</string>
 
     <string name="descover_title">Hold to know more</string>
     <string name="descover_description">With a long press, know more about the world country</string>
@@ -29,7 +29,10 @@
     <string name="quoted_from">- Elliott Erwitt -</string>
     <string name="founder_first_name">Azzeddine</string>
     <string name="founder_last_name">CHENINE</string>
+    <string name="photographer_first_name">Raghed</string>
+    <string name="photographer_last_name">Kerroum</string>
     <string name="founder_job">Computer science engineering Student</string>
+    <string name="photographer_job">Photographer and electrotech engineering Student</string>
     <string name="photos_by_title">Photos by</string>
     <string name="developed_by_title">Developed by</string>
     <string name="community_title">community</string>
@@ -78,25 +81,24 @@
         <item>Arab world</item>
         <item>Europe</item>
         <item>Africa</item>
-        <item >Asia</item>
+        <item>Asia</item>
         <item>North America</item>
         <item>South America</item>
     </string-array>
 
-  <!-- albums categories used in 500px Api -->
+    <!-- albums categories used in 500px Api -->
     <string-array name="albums_categories">
-        <item >Landscapes</item>
-        <item >Nature</item>
-        <item >City and Architecture</item>
-        <item >Night</item>
+        <item>Landscapes</item>
+        <item>Nature</item>
+        <item>City and Architecture</item>
+        <item>Night</item>
         <item>Street</item>
         <item>Travel</item>
         <item>Transportation</item>
         <item>Black and White</item>
-        <item >Fine Art</item>
-        <item >Food</item>
+        <item>Fine Art</item>
+        <item>Food</item>
     </string-array>
-
 
 
 </resources>

@@ -26,10 +26,7 @@ public class AboutUsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about_us,container,false);
-        Glide.with(getContext())
-                .load(R.mipmap.founder)
-                .apply(new RequestOptions().circleCrop())
-                .into((ImageView) view.findViewById(R.id.founder_image));
+
 
         final AppCompatActivity activity = ((AppCompatActivity) getActivity());
         Toolbar toolbar = view.findViewById(R.id.toolbar);

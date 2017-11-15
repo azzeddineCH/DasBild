@@ -78,6 +78,38 @@
                     android:text="@string/community_title" />
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/photographer_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                android:src="@mipmap/photographer"
+                android:padding="2dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/photographer_first_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/photographer_last_name" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/photographer_job" />
+
             <TextView
                 style="@style/Base.TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
@@ -91,9 +123,9 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/shape_border_free"
+                android:src="@mipmap/founder"
                 android:padding="2dp"
-                android:src="@mipmap/founder" />
+               />
 
             <LinearLayout
                 android:layout_width="wrap_content"

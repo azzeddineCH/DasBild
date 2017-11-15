@@ -5,8 +5,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
 
-        setTheme(R.style.AppTheme_NoActionBar);
+        introPageHandler();
         setContentView(R.layout.activity_main);
 
         // initializing the database
@@ -355,6 +357,41 @@ public class MainActivity extends AppCompatActivity implements
 
 
     }
+
+    public void introPageHandler() {
+        // this thread will start the intro activity if the app is being lunched for the first time
+        // declare a new thread to do a preference check
+        Thread intro = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //  Initialize SharedPreferences
+                SharedPreferences getPrefs = PreferenceManager
+                        .getDefaultSharedPreferences(getBaseContext());
+
+                //  Create a new boolean and preference and set it to true
+                boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
+                Log.d(TAG, "run: this is the first start " + isFirstStart);
+                //  If the activity has never started before...
+                if (isFirstStart) {
+
+                    //  Launch app intro
+                    Intent introActivityIntent = new Intent(MainActivity.this,AppIntroActivity.class);
+                    startActivity(introActivityIntent);
+
+                    //  Make a new preferences editor
+                    SharedPreferences.Editor preferenceEditor = getPrefs.edit();
+
+                    //  Edit preference to make it false because we don't want this to run again
+                    preferenceEditor.putBoolean("firstStart", false);
+
+                    //  Apply changes
+                    preferenceEditor.apply();
+                }
+            }
+        });
+        intro.start();
+    }
+
 
     public  static class NetworkStateBroadcastReceiver extends BroadcastReceiver{
 
