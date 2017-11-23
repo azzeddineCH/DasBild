@@ -78,7 +78,7 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
             Log.d(TAG, "onActivityCreated: loading args");
             getLoaderManager().initLoader(KeysUtil.COUNTRIES_LIST_LOADER_ID,args,this);
         }else {
-            getLoaderManager().initLoader(KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID,null,this);
+            getLoaderManager().initLoader(KeysUtil.SAVED_COUNTRIES_LOADER_ID,null,this);
         }
 
     }
@@ -96,7 +96,7 @@ public class CountriesListFragment extends Fragment implements LoaderManager.Loa
         switch (id){
             case KeysUtil.COUNTRIES_LIST_LOADER_ID:
                 return new CountriesListLoader(getContext(),args.getString(KeysUtil.REGION_NAME_KEY));
-            case KeysUtil.BOOKMARKED_COUNTRIES_LOADER_ID:
+            case KeysUtil.SAVED_COUNTRIES_LOADER_ID:
                 Log.d(TAG, "onCreateLoader: searching in the database");
                 return new BookmarkedCountriesLoader(getContext());
             default:

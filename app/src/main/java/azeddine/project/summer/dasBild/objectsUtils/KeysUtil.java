@@ -19,8 +19,8 @@ public class KeysUtil {
     public static final int ONLINE_MORE_PHOTOS_LOADER_ID = 1;
     public static final int ONLINE_RECENT_PHOTOS_LOADER_ID = 2;
     public static final int COUNTRY_DETAILS_LOADER_ID = 3;
-    public static final int BOOKMARKED_COUNTRIES_LOADER_ID = 4;
-    public static final int BOOKMARKED_PHOTOS_LOADER_ID = 5;
+    public static final int SAVED_COUNTRIES_LOADER_ID = 4;
+    public static final int SAVED_PHOTOS_LOADER_ID = 5;
 
 
 

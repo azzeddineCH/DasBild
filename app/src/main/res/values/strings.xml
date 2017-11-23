@@ -3,36 +3,39 @@
     <string name="app_slogan" translatable="false">Travel Through Pictures</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="app_why">
-        DasBild is an application made with Love, a love for photography and travel.
-        It takes you on a journey through the world famous regions collecting the best
+        DasBild is an application made with love for photography and travel.
+        taking you on a journey through the world famous regions collecting the best
         pictures taken by a community of talented and passionate photographers.
     </string>
     <string name="app_quote">
         To me, photography is an art of observation.
-        It’s about finding something interesting in an ordinary place, I’ve found it has little to do with
+        It’s about finding something interesting in an ordinary place, I’ve found that it has little to do with
         the things you see and everything to do with the way you see them
     </string>
 
     <!-- intro page resources-->
+    <string name="travel__main_title">Travel</string>
     <string name="travel_title">Travel Through Pictures</string>
-    <string name="travel_description">taking a journey around the World collecting the best images</string>
+    <string name="travel_description">Going through a collection of great albums for the world famous regions</string>
 
-    <string name="descover_title">Hold to know more</string>
-    <string name="descover_description">With a long press, know more about the world country</string>
+    <string name="discover_main_title">Reach</string>
+    <string name="discover_title">All is within reach</string>
+    <string name="discover_description">Discover more about the world countries and various regions</string>
 
-    <string name="save_title">Save what you love</string>
-    <string name="save_description">making it easy to Save your favourite countries and photos</string>
+    <string name="save__main_title">Save</string>
+    <string name="save_title">Save what\'s spacial</string>
+    <string name="save_description">Making it easy to save your favourite countries and photos </string>
 
     <string name="start_title">Get started</string>
-    <string name="start_description">Start experiencing what can a great picture tell about an place</string>
+    <string name="start_description">Experience what a great picture can tell you about an ordinary place</string>
 
     <string name="quoted_from">- Elliott Erwitt -</string>
     <string name="founder_first_name">Azzeddine</string>
     <string name="founder_last_name">CHENINE</string>
     <string name="photographer_first_name">Raghed</string>
     <string name="photographer_last_name">Kerroum</string>
-    <string name="founder_job">Computer science engineering Student</string>
-    <string name="photographer_job">Photographer and electrotech engineering Student</string>
+    <string name="founder_job">Computer Science Engineering Student</string>
+    <string name="photographer_job">Photographer and Electrical Engineering Student</string>
     <string name="photos_by_title">Photos by</string>
     <string name="developed_by_title">Developed by</string>
     <string name="community_title">community</string>
@@ -45,7 +48,8 @@
     <string name="no_photos">No photos available</string>
     <string name="no_signal">No internet available</string>
     <string name="no_details">No information available</string>
-    <string name="no_bookmarked_photos">No bookmarked image found</string>
+    <string name="no_saved_photos">No saved image found</string>
+    <string name="no_more_saved_photos">No more saved image found</string>
     <string name="google_maps_intent_text">show in map</string>
     <string name="google_maps_intent_error">Can not show in map</string>
 
@@ -59,10 +63,10 @@
     <string name="asia">Asia</string>
     <string name="north_america">North America</string>
     <string name="south_america">South America</string>
-    <string name="bookmarks_title">Saved</string>
-    <string name="regions_bookmarks_title">Regions and countries</string>
-    <string name="photos_bookmarks_title">Photos</string>
-    <string name="bookmarked_photos_fragment_title">Bookmarked photos</string>
+    <string name="saved_title">Saved</string>
+    <string name="regions_saved_title">Regions and countries</string>
+    <string name="photos_saved_title">Photos</string>
+    <string name="saved_photos_fragment_title">Saved photos</string>
     <string name="more_section_label">More</string>
     <string name="about_section">About DasBild</string>
 

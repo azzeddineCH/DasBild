@@ -7,17 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="8fbe5002f9ad75e8ca987b06f4723caab4565f92">
+        sha1="a14ee7a4bdc60d6610c69777162589dd405cbb9d">
         <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_a21f5484a23204ee8b9c1984dc911f1bafbcf31c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/macbook/.android/build-cache/922401d8655046f81afde3abbe3d19c47d7fcc20/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.2"
-        sha1="63e7f521cc66c17dd9a22fbf75925a7947bfef7a">
-        <dex dex="/Users/macbook/AndroidStudioProjects/DasBild/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2301d3a88fe6db86e527e3896f79aba0f4ff661e/classes.dex" />
     </item>
     <item
         is-multidex="true"

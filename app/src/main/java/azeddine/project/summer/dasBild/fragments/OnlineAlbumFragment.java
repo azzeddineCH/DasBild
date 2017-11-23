@@ -16,6 +16,7 @@ import java.util.List;
 import azeddine.project.summer.dasBild.ApiUtils;
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.adapters.CountryAlbumAdapter;
+import azeddine.project.summer.dasBild.loaders.SavedPhotosLoader;
 import azeddine.project.summer.dasBild.loaders.OnlinePhotosLoader;
 import azeddine.project.summer.dasBild.objectsUtils.KeysUtil;
 import azeddine.project.summer.dasBild.objectsUtils.Photo;
@@ -26,7 +27,7 @@ import azeddine.project.summer.dasBild.objectsUtils.Photo;
 
 public class OnlineAlbumFragment extends PhotosGalleryFragment {
     public static final String TAG = "OnlineAlbumFragment";
-    private int mCurrentAlbumPage = OnlinePhotosLoader.DEFAULT_ALBUM_PAGE;
+    private int mCurrentAlbumPage = SavedPhotosLoader.DEFAULT_ALBUM_PAGE;
 
 
     @Nullable
@@ -151,7 +152,10 @@ public class OnlineAlbumFragment extends PhotosGalleryFragment {
             case KeysUtil.ONLINE_RECENT_PHOTOS_LOADER_ID:
                 mSwipeRefreshLayout.setRefreshing(false);
                 if(photos.isEmpty()){
-                    Toast.makeText(getContext(), R.string.could_not_refresh_text, Toast.LENGTH_SHORT).show();
+                    if(ApiUtils.isOnline(getContext()))
+                        Toast.makeText(getContext(), R.string.no_photos,Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(getContext(), R.string.could_not_refresh_text, Toast.LENGTH_SHORT).show();
                 }else {
                     if(isEmptyListViewVisible()) hideEmptyListBitmap();
                     mCountryAlbumAdapter.addPhotosToTop(photos);

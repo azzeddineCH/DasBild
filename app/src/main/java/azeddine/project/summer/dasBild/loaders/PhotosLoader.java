@@ -61,8 +61,8 @@ public abstract class PhotosLoader extends AsyncTaskLoader<Object> {
         forceLoad();
     }
 
-    protected void forceLoad(int pageNumber) {
-        mAlbumPageNumber = pageNumber;
+    public void forceLoad(int pageNumber) {
+        setAlbumPageNumber(pageNumber);
         super.onForceLoad();
     }
 

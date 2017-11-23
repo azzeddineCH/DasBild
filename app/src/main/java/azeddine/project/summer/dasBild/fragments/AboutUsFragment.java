@@ -21,12 +21,19 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import azeddine.project.summer.dasBild.R;
+
+/**
+ * this fragment is the about us section of the app
+ * it includes:
+ *  - the app why
+ *  - the contributors
+ *  - the owner
+ */
 public class AboutUsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about_us,container,false);
-
 
         final AppCompatActivity activity = ((AppCompatActivity) getActivity());
         Toolbar toolbar = view.findViewById(R.id.toolbar);

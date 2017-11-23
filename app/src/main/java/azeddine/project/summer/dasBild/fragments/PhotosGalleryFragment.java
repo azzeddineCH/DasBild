@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
@@ -22,7 +21,7 @@ import android.widget.TextView;
 import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.adapters.CountryAlbumAdapter;
 import azeddine.project.summer.dasBild.costumComponents.WrapContentGridLayoutManager;
-import azeddine.project.summer.dasBild.loaders.BookmarkedPhotosLoader;
+import azeddine.project.summer.dasBild.loaders.SavedPhotosLoader;
 import azeddine.project.summer.dasBild.loaders.OnlinePhotosLoader;
 import azeddine.project.summer.dasBild.objectsUtils.KeysUtil;
 
@@ -66,14 +65,27 @@ public abstract class PhotosGalleryFragment extends Fragment implements LoaderMa
             mErrorText.setText(errorText);
     }
 
+    /**
+     * a method used to hide the empty list view
+     * and show the app pastern as a background
+     */
+
     protected void hideEmptyListBitmap(){
             mAlbumRecyclerView.setVisibility(View.VISIBLE);
             mErrorDisplayLayout.setVisibility(View.GONE);
     }
+
+    /**
+     * get the visibility of the photos recycler view
+     * @return true if visible else it returns false
+     */
     protected boolean isEmptyListViewVisible(){
         return mAlbumRecyclerView.getVisibility() == View.GONE;
     }
 
+    /**
+     * set the scroll offset to zero smoothly
+     */
     public void resetAlbumScroll(){
         mAlbumRecyclerView.smoothScrollToPosition(0);
     }
@@ -84,6 +96,13 @@ public abstract class PhotosGalleryFragment extends Fragment implements LoaderMa
 
     }
 
+    /**
+     * init the album adapter fields
+     * @param context of the host activity
+     * @param columnNumber in one row
+     * @return the album adapter adapter
+     * @throws Exception if the specified number of columns is zero
+     */
     public  CountryAlbumAdapter initAlbumAdapter(Context context,int columnNumber) throws Exception {
         if(columnNumber < 1) throw new Exception("the column number can't be less then one!");
         mAlbumRecyclerView.setLayoutManager(new WrapContentGridLayoutManager(context,columnNumber));
@@ -99,8 +118,8 @@ public abstract class PhotosGalleryFragment extends Fragment implements LoaderMa
                 return new OnlinePhotosLoader(getContext(),mAlbumName,mCategoryName);
             case  KeysUtil.ONLINE_RECENT_PHOTOS_LOADER_ID:
                 return new OnlinePhotosLoader(getContext(),mAlbumName,mCategoryName);
-            case KeysUtil.BOOKMARKED_PHOTOS_LOADER_ID:
-                return new BookmarkedPhotosLoader(getContext());
+            case KeysUtil.SAVED_PHOTOS_LOADER_ID:
+                return new SavedPhotosLoader(getContext());
             default:
                 return null;
         }

@@ -2,44 +2,72 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:id="@+id/er"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingBottom="64dp">
-        <TextView
-            android:layout_marginTop="64dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save_title"
-            android:textColor="@color/white_smoke"
-            android:textSize="32sp"
-            android:fontFamily="sans-serif-light"
-            style="@style/Base.TextAppearance.AppCompat.Title"/>
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent">
 
         <ImageView
-            android:layout_weight="2"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:src="@mipmap/save_intro"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/save_intro_pattern"
+            android:scaleType="centerCrop"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save__main_title"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@android:color/white"
+                style="@style/Base.TextAppearance.AppCompat.Display2" />
+            <FrameLayout
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="280dp"
+                    android:layout_height="280dp"
+                    android:src="@mipmap/save_intro_hero"/>
+                <LinearLayout
+                    android:id="@+id/intro_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="255dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="16dp"
+                    android:background="@mipmap/blured_text_background">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        style="@style/Base.TextAppearance.AppCompat.Title"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:text="@string/save_title" />
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:text="@string/save_description"/>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:lineSpacingExtra="10sp"
-            android:paddingEnd="32dp"
-            android:layout_weight="1"
-            android:paddingStart="32dp"
-            android:text="@string/save_description"
-            android:textAlignment="center"
-            android:textColor="@color/white_smoke"
-            android:textSize="18sp" />
-    </LinearLayout>
-</FrameLayout>
+
+
 

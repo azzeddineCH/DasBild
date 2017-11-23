@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -38,7 +37,7 @@ import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.adapters.CountriesListAdapter;
 import azeddine.project.summer.dasBild.adapters.CountryAlbumAdapter;
 import azeddine.project.summer.dasBild.fragments.AboutUsFragment;
-import azeddine.project.summer.dasBild.fragments.BookmarksAlbumFragment;
+import azeddine.project.summer.dasBild.fragments.SavedPhotosAlbumFragment;
 import azeddine.project.summer.dasBild.fragments.CountriesListFragment;
 import azeddine.project.summer.dasBild.fragments.OnlineAlbumFragment;
 import azeddine.project.summer.dasBild.fragments.CountryDetailsDialogFragment;
@@ -340,9 +339,9 @@ public class MainActivity extends AppCompatActivity implements
     private void startBookmarkedPhotosFragment(){
         mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
-        BookmarksAlbumFragment bookmarksAlbumFragment = new BookmarksAlbumFragment();
+        SavedPhotosAlbumFragment savedPhotosAlbumFragment = new SavedPhotosAlbumFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.drawer_layout,bookmarksAlbumFragment,BookmarksAlbumFragment.TAG)
+                .replace(R.id.drawer_layout, savedPhotosAlbumFragment, SavedPhotosAlbumFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();

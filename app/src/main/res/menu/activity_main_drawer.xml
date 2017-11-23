@@ -40,18 +40,18 @@
             </group>
         </menu>
     </item>
-    <item android:title="@string/bookmarks_title">
+    <item android:title="@string/save_title">
         <menu>
             <group
                 android:id="@+id/bookmarks"
                 android:checkableBehavior="single">
                 <item
                     android:id="@+id/bookmarked_countries_regions"
-                    android:title="@string/regions_bookmarks_title"
+                    android:title="@string/regions_saved_title"
                     android:icon="@drawable/ic_map_marker"/>
                 <item
                     android:id="@+id/bookmarked_photos"
-                    android:title="@string/photos_bookmarks_title"
+                    android:title="@string/photos_saved_title"
                     android:checkable="false"
                     android:icon="@drawable/ic_photo_marker"/>
             </group>

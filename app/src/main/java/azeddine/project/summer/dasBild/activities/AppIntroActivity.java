@@ -1,21 +1,15 @@
 package azeddine.project.summer.dasBild.activities;
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntro2;
 
-import azeddine.project.summer.dasBild.R;
-import azeddine.project.summer.dasBild.fragments.introFragments.Slide;
+import azeddine.project.summer.dasBild.fragments.Slide;
 
-public class AppIntroActivity extends AppIntro2 {
+public class AppIntroActivity extends AppIntro {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +17,6 @@ public class AppIntroActivity extends AppIntro2 {
         Slide slide = new Slide();
         Bundle args = new Bundle();
 
-        backgroundFrame.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.mipmap.app_paterne);
-        imageView.setAlpha((float) 0.2);
-        backgroundFrame.addView(imageView);
 
         args.putInt("INTRO_SLIDE_NUMBER",1);
         slide.setArguments(args);
@@ -42,6 +31,12 @@ public class AppIntroActivity extends AppIntro2 {
         slide = new Slide();
         args = new Bundle();
         args.putInt("INTRO_SLIDE_NUMBER",3);
+        slide.setArguments(args);
+        addSlide(slide);
+
+        slide = new Slide();
+        args = new Bundle();
+        args.putInt("INTRO_SLIDE_NUMBER",4);
         slide.setArguments(args);
         addSlide(slide);
 

@@ -79,10 +79,6 @@ public class OnlinePhotosLoader extends PhotosLoader {
         return photoArrayList;
     }
 
-    public void forceLoad(int pageNumber) {
-        setAlbumPageNumber(pageNumber);
-        super.onForceLoad();
-    }
 
 
     private Photo getPhotoInstance(JSONObject jsonObject) throws JSONException {
