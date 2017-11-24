@@ -40,7 +40,7 @@
             </group>
         </menu>
     </item>
-    <item android:title="@string/save_title">
+    <item android:title="@string/saved_title">
         <menu>
             <group
                 android:id="@+id/bookmarks"

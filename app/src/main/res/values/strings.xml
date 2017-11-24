@@ -14,7 +14,7 @@
     </string>
 
     <!-- intro page resources-->
-    <string name="travel__main_title">Travel</string>
+    <string name="travel_main_title">Travel</string>
     <string name="travel_title">Travel Through Pictures</string>
     <string name="travel_description">Going through a collection of great albums for the world famous regions</string>
 
@@ -22,7 +22,7 @@
     <string name="discover_title">All is within reach</string>
     <string name="discover_description">Discover more about the world countries and various regions</string>
 
-    <string name="save__main_title">Save</string>
+    <string name="save_main_title">Save</string>
     <string name="save_title">Save what\'s spacial</string>
     <string name="save_description">Making it easy to save your favourite countries and photos </string>
 

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
   <item android:id="@+id/bookmark_action"
-      android:title="@string/save_title"
+      android:title="@string/save_main_title"
       android:icon="@drawable/ic_bookmark_border_white"
       app:showAsAction="always">
   </item>

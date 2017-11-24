@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntro;
 
+import azeddine.project.summer.dasBild.R;
 import azeddine.project.summer.dasBild.fragments.Slide;
 
 public class AppIntroActivity extends AppIntro {
@@ -16,6 +17,9 @@ public class AppIntroActivity extends AppIntro {
         super.onCreate(savedInstanceState);
         Slide slide = new Slide();
         Bundle args = new Bundle();
+
+        setBarColor(getResources().getColor(R.color.colorPrimary));
+        setSeparatorColor(getResources().getColor(R.color.colorPrimary));
 
 
         args.putInt("INTRO_SLIDE_NUMBER",1);

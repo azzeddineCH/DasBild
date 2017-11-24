@@ -20,7 +20,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/save__main_title"
+                android:text="@string/save_main_title"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@android:color/white"
                 style="@style/Base.TextAppearance.AppCompat.Display2" />

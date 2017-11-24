@@ -58,7 +58,7 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/ic_expand_more"
-                android:scaleType="center" />
+                android:scaleType="fitStart" />
             <ImageView
                 android:id="@+id/photographer_profile_image"
                 android:layout_marginBottom="4dp"
