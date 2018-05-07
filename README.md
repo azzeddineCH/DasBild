@@ -1,9 +1,10 @@
 # DasBild
-If you are the type person who is fascinated by photography and in love with travel, we just made the right app for you ;)
+If you are the type person who is fascinated by photography and in love with travel, we just made the right app for you 😉
 DasBild is an application made with Love for photography and travel. Taking you on a journey through the world famous regions collecting the best pictures taken by a community of talented and passionate photographers.
 
 # Demo
 <div align="center">
+  <img  src="a.png" height="500"/>
   <img  src="1.png" height="500"/>
   <img  src="2.png" height="500"/>
   <img  src="3.png" height="500"/>  
