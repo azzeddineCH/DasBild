@@ -32,8 +32,7 @@
     <string name="quoted_from">- Elliott Erwitt -</string>
     <string name="founder_first_name">Azzeddine</string>
     <string name="founder_last_name">CHENINE</string>
-    <string name="photographer_first_name">Raghed</string>
-    <string name="photographer_last_name">Kerroum</string>
+   
     <string name="founder_job">Computer Science Engineering Student</string>
     <string name="photographer_job">Photographer and Electrical Engineering Student</string>
     <string name="photos_by_title">Photos by</string>
